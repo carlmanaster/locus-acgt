@@ -1,16 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { HotTable } from '@handsontable/react';
+
+const {times} = require('ramda')
+
+const bases = 'acgt'.split('')
+const randomBase = () => bases[Math.floor(4 * Math.random())]
+const randomSequence = n => times(randomBase, n).join('')
 
 class LocusTable extends React.Component {
   constructor(props) {
     super(props);
-    this.data = [
-      ["", "Ford", "Volvo", "Toyota", "Honda"],
-      ["2016", 10, 11, 12, 13],
-      ["2017", 20, 11, 14, 13],
-      ["2018", 30, 15, 12, 13]
-    ];
+    this.data = times( () => times (() => randomSequence(10), 5), 10)
   }
 
   render() {
