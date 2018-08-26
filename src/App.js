@@ -10,15 +10,14 @@ class App extends Component {
         <header className="App-header">
             <span className="App-title">Locus&nbsp;</span>
             <span className="App-title-a">A</span>
-            <span className="App-title">-</span>
+            <span className="App-title">&ndash;</span>
             <span className="App-title-c">C</span>
-            <span className="App-title">-</span>
+            <span className="App-title">&ndash;</span>
             <span className="App-title-g">G</span>
-            <span className="App-title">-</span>
+            <span className="App-title">&ndash;</span>
             <span className="App-title-t">T&nbsp;</span>
             <span className="App-subtitle">a spreadsheet for sequences</span>
         </header>
-
         <LocusTable/>
       </div>
     );
