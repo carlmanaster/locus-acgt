@@ -1,3 +1,11 @@
+/* http://www.jalview.org/help/html/colourSchemes/ */
+
+.adenine {color: #64F73F}
+.cytosine {color: #FFB340}
+.guanine {color: #EB413C}
+.thymine {color: #3C88EE}
+.uracil {color: #3C88EE}
+
 .App-header {
   background-color: #222;
   padding: 10px;
@@ -6,27 +14,6 @@
 
 .App-title {
   font-size: 1.5em;
-  color: #CCC
-}
-
-.App-title-a {
-  font-size: 1.5em;
-  color: red;
-}
-
-.App-title-c {
-  font-size: 1.5em;
-  color: yellow;
-}
-
-.App-title-g {
-  font-size: 1.5em;
-  color: green;
-}
-
-.App-title-t {
-  font-size: 1.5em;
-  color: blue;
 }
 
 .App-subtitle {

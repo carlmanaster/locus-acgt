@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import { HotTable } from '@handsontable/react';
 
 const {times} = require('ramda')
@@ -8,10 +7,16 @@ const bases = 'acgt'.split('')
 const randomBase = () => bases[Math.floor(4 * Math.random())]
 const randomSequence = n => times(randomBase, n).join('')
 
+
+// locus-acgt-dna-sequence
+
+
 class LocusTable extends React.Component {
   constructor(props) {
     super(props);
     this.data = times( () => times (() => randomSequence(10), 5), 10)
+    this.data[3][3] = 7
+    this.data[2][4] = 'not-sequence'
   }
 
   render() {
@@ -19,6 +24,7 @@ class LocusTable extends React.Component {
       <div id="hot-app">
         <HotTable
           data={this.data}
+          type="locus-acgt-dna-sequence"
           colHeaders={true}
           rowHeaders={true}
           width="600"
