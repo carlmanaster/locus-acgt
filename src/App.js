@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'handsontable/dist/handsontable.full.css';
+import LocusTable from './LocusTable'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+            <span className="App-title">Locus&nbsp;</span>
+            <span className="App-title-a">A</span>
+            <span className="App-title">-</span>
+            <span className="App-title-c">C</span>
+            <span className="App-title">-</span>
+            <span className="App-title-g">G</span>
+            <span className="App-title">-</span>
+            <span className="App-title-t">T&nbsp;</span>
+            <span className="App-subtitle">a spreadsheet for sequences</span>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <LocusTable/>
       </div>
     );
   }
