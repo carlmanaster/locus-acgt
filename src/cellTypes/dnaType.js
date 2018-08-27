@@ -2,7 +2,6 @@ import Handsontable from 'handsontable'
 
 const { checkType } = require('bionode-seq')
 
-// for some reason this does not seem to be called
 const validator = (value, callback) => {
   if (value == null) {
     value = '';
@@ -15,7 +14,6 @@ const validator = (value, callback) => {
 
   } else {
     const type = checkType(value)
-    console.log(`type:`, type)
     callback(type === 'dna');
   }
 };
