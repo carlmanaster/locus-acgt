@@ -7,10 +7,6 @@ const bases = 'acgt'.split('')
 const randomBase = () => bases[Math.floor(4 * Math.random())]
 const randomSequence = n => times(randomBase, n).join('')
 
-
-// locus-acgt-dna-sequence
-
-
 class LocusTable extends React.Component {
   constructor(props) {
     super(props);
@@ -36,5 +32,3 @@ class LocusTable extends React.Component {
   }
 }
 export default LocusTable
-//
-// module.exports = {LocusTable}

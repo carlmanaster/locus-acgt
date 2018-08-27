@@ -1,6 +1,6 @@
 import Handsontable from 'handsontable'
 
-const {checkType} = require('bionode-seq')
+const { checkType } = require('bionode-seq')
 
 // for some reason this does not seem to be called
 const validator = (value, callback) => {
@@ -20,7 +20,7 @@ const validator = (value, callback) => {
   }
 };
 
-const thing = c => {
+const toSpan = c => {
   switch (c.toLowerCase()) {
     case 'a': return `<span class="adenine">${c}</span>`
     case 'c': return `<span class="cytosine">${c}</span>`
@@ -30,36 +30,26 @@ const thing = c => {
   }
 }
 
-
+const toDiv = sequence => {
+  const chars = sequence.toString().split('')
+  const spans = chars.map(toSpan).join('')
+  const div = document.createElement('div');
+  div.innerHTML = spans;
+  return div
+}
 
 const renderer = function(instance, td, row, col, prop, value, cellProperties) {
-  const chars = value.toString().split('')
-  const spans = chars.map(thing).join('')
-
-  var z = document.createElement('div'); // is a node
-  z.innerHTML = spans;
-  console.log(`z:`, z)
-
-  // console.log(`spans:`, spans)
-  // td = `<td style="font-family: monospace;">${spans}</td>`
+  const div = toDiv(value)
   Handsontable.renderers.TextRenderer.apply(this, arguments);
-  // console.log(`td.style:`, td.style)
   td.style.fontFamily = 'monospace';
   td.removeChild(td.childNodes[0]);
-  td.appendChild(z)
-
-
-  //
-  // value = `<span>${value}</span>`
-  // Handsontable.renderers.TextRenderer.apply(this, arguments);
-  // console.log(`value:`, value)
-  // console.log(`td:`, td)
+  td.appendChild(div)
 };
-// <td style="font-family: monospace;">ttaccatctc</td>
 
-
+const editor = Handsontable.editors.TextEditor
 
 export default {
   renderer,
   validator,
+  editor
 };
