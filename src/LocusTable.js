@@ -10,7 +10,7 @@ const randomSequence = n => times(randomBase, n).join('')
 class LocusTable extends React.Component {
   constructor(props) {
     super(props);
-    this.data = times( () => times (() => randomSequence(10), 5), 10)
+    this.data = times( () => times (() => randomSequence(80), 5), 10)
     this.data[3][3] = 7
     this.data[2][4] = 'not-sequence'
   }

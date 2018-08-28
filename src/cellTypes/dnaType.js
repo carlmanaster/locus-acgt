@@ -28,7 +28,28 @@ const toSpan = c => {
   }
 }
 
-const toDiv = sequence => {
+const toStripe = (c, x) => {
+  switch (c.toLowerCase()) {
+    case 'a': return `<line class="adenine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
+    case 'c': return `<line class="cytosine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
+    case 'g': return `<line class="guanine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
+    case 't': return `<line class="thymine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
+    default: return c
+  }
+}
+
+const toStripes = sequence => {
+  const chars = sequence.toString().split('')
+  let stripes = ''
+  for (var i = 0; i < chars.length; i++) {
+    stripes += toStripe(chars[i], i)
+  }
+  const div = document.createElement('div');
+  div.innerHTML = `<svg height="20" width="100">${stripes}</svg>`
+  return div
+}
+
+const toColorText = sequence => {
   const chars = sequence.toString().split('')
   const spans = chars.map(toSpan).join('')
   const div = document.createElement('div');
@@ -37,7 +58,7 @@ const toDiv = sequence => {
 }
 
 const renderer = function(instance, td, row, col, prop, value, cellProperties) {
-  const div = toDiv(value)
+  const div = toStripes(value)
   Handsontable.renderers.TextRenderer.apply(this, arguments);
   td.style.fontFamily = 'monospace';
   td.removeChild(td.childNodes[0]);

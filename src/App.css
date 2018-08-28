@@ -1,10 +1,10 @@
 /* http://www.jalview.org/help/html/colourSchemes/ */
 
-.adenine {color: #64F73F}
-.cytosine {color: #FFB340}
-.guanine {color: #EB413C}
-.thymine {color: #3C88EE}
-.uracil {color: #3C88EE}
+.adenine {color: #64F73F; stroke: #64F73F}
+.cytosine {color: #FFB340; stroke: #FFB340}
+.guanine {color: #EB413C; stroke: #EB413C}
+.thymine {color: #3C88EE; stroke: #3C88EE}
+.uracil {color: #3C88EE; stroke: #3C88EE}
 
 .App-header {
   background-color: #222;
