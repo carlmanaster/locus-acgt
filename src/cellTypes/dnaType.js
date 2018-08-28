@@ -18,18 +18,16 @@ const validator = (value, callback) => {
   }
 };
 
-const base = c => {
-  switch (c.toLowerCase()) {
-    case 'a': return `adenine`
-    case 'c': return `cytosine`
-    case 'g': return `guanine`
-    case 't': return `thymine`
-    default: return ``
-  }
+const baseMap = {
+  a: 'adenine',
+  c: 'cytosine',
+  g: 'guanine',
+  t: 'thymine'
 }
 
+const base = c => baseMap[c.toLowerCase()]
 const toSpan = c => `<span class="${base(c)}">${c}</span>`
-const toStripe = (c, x) => `<line class="${base(c)}" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
+const toStripe = (c, x) => `<line class="${base(c)}" y1="0" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
 
 const toStripes = sequence => {
   const chars = sequence.toString().split('')
@@ -38,7 +36,7 @@ const toStripes = sequence => {
     stripes += toStripe(chars[i], i)
   }
   const div = document.createElement('div');
-  div.innerHTML = `<svg height="20" width="100">${stripes}</svg>`
+  div.innerHTML = `<svg height=20 width = ${sequence.length}>${stripes}</svg>`
   return div
 }
 
