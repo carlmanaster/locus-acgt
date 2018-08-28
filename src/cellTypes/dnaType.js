@@ -18,25 +18,18 @@ const validator = (value, callback) => {
   }
 };
 
-const toSpan = c => {
+const base = c => {
   switch (c.toLowerCase()) {
-    case 'a': return `<span class="adenine">${c}</span>`
-    case 'c': return `<span class="cytosine">${c}</span>`
-    case 'g': return `<span class="guanine">${c}</span>`
-    case 't': return `<span class="thymine">${c}</span>`
-    default: return c
+    case 'a': return `adenine`
+    case 'c': return `cytosine`
+    case 'g': return `guanine`
+    case 't': return `thymine`
+    default: return ``
   }
 }
 
-const toStripe = (c, x) => {
-  switch (c.toLowerCase()) {
-    case 'a': return `<line class="adenine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
-    case 'c': return `<line class="cytosine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
-    case 'g': return `<line class="guanine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
-    case 't': return `<line class="thymine" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
-    default: return c
-  }
-}
+const toSpan = c => `<span class="${base(c)}">${c}</span>`
+const toStripe = (c, x) => `<line class="${base(c)}" y1="3" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
 
 const toStripes = sequence => {
   const chars = sequence.toString().split('')
