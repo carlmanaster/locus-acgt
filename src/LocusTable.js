@@ -10,7 +10,7 @@ const randomSequence = n => times(randomBase, n).join('')
 class LocusTable extends React.Component {
   constructor(props) {
     super(props);
-    this.data = times( () => times (() => randomSequence(100), 5), 10)
+    this.data = times( () => times (() => randomSequence(100), 10), 30)
   }
 
   render() {
@@ -21,8 +21,8 @@ class LocusTable extends React.Component {
           type="locus-acgt-dna-sequence"
           colHeaders={true}
           rowHeaders={true}
-          width="600"
-          height="300"
+          width="1200"
+          height="700"
           stretchH="all"
         />
       </div>
