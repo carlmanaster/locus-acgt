@@ -13,9 +13,8 @@ const validator = (value, callback) => {
     callback(false);
 
   } else {
-    // fails for /t*/, presumably because t is ambiguously dna or aa (?)
     const type = checkType(value)
-    callback(type === 'dna');
+    callback(type === 'dna' || value.replace(/t*/g, '') === '');
   }
 };
 
