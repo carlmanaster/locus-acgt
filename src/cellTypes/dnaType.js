@@ -2,7 +2,7 @@ import Handsontable from 'handsontable'
 
 const { checkType } = require('bionode-seq')
 
-const validator = (value, callback) => {
+const validator = function(value, callback) {
   if (value == null) {
     value = '';
   }
@@ -50,7 +50,7 @@ const toStripes = sequence => {
   return div
 }
 
-const toColorText = sequence => {
+const toColorText = function(sequence) {
   const chars = sequence.toString().split('')
   let spans = ''
   for (var i = 0; i < chars.length; i++) {
