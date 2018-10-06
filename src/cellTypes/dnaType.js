@@ -38,7 +38,6 @@ const base = (c, match) => match? baseMapLight[c.toLowerCase()] :baseMap[c.toLow
 const toSpan = (c, match) => `<span class="${base(c, match)}">${c}</span>`
 const toStripe = (c, x, match) => `<line class="${base(c, match)}" y1="0" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
 
-
 const toStripes = sequence => {
   const chars = sequence.toString().split('')
   let stripes = ''
@@ -63,11 +62,14 @@ const toColorText = sequence => {
   return div
 }
 
-const renderer = function(instance, td, row, col, prop, value, cellProperties) {
+const renderer = function(hot, td, row, col, prop, value, cellProperties) {
+  console.log(`hot.getCellMeta(row, col):`, hot.getCellMeta(row, col))
+
+  // console.log(`cellProperties:`, cellProperties)
   // const div = toColorText(value)
+  // td.style.fontFamily = 'monospace';
   const div = toStripes(value)
   Handsontable.renderers.TextRenderer.apply(this, arguments);
-  td.style.fontFamily = 'monospace';
   td.removeChild(td.childNodes[0]);
   td.appendChild(div)
 };

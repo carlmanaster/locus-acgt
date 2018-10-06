@@ -1,29 +1,83 @@
 import React from 'react';
 import { HotTable } from '@handsontable/react';
+const { forEach } = require('ramda')
 
-const {times} = require('ramda')
-
-const bases = 'acgt'.split('')
-const randomBase = () => bases[Math.floor(4 * Math.random())]
-const randomSequence = n => times(randomBase, n).join('')
+const visit = (hot, ranges, fn) => {
+  forEach( range => {
+    const {start, end} = range
+    for (var row = start.row; row <= end.row; row++) {
+      for (var col = start.col; col <= end.col; col++) {
+        console.log(row, col)
+        fn(hot.getCell(row, col))
+      }
+    }
+  }, ranges)
+}
 
 class LocusTable extends React.Component {
   constructor(props) {
     super(props);
-    this.data = times( () => times (() => randomSequence(100), 10), 30)
+    const {data} = props
+    this.state = {data}
   }
 
   render() {
+    const contextMenu = {
+      callback: function (key, selection, clickEvent) {
+        // Common callback for all options
+        console.log(clickEvent);
+      },
+      items: {
+        "toggle_stripes": {
+          name: 'Toggle Stripes',
+          callback: function () {
+            this.setCellMeta(0, 0, 'drawStripes', true)
+            this.render()
+          }
+        },
+        "set_reference": {
+          name: 'Set Reference',
+          callback: function () {
+            const ranges = arguments[1]
+            visit(this, ranges, console.log)
+            // console.log('setting cell reference')
+            // console.log(`arguments[1]:`, arguments[1])
+          }
+        },
+        // "row_above": {
+        //   disabled: function () {
+        //     // Disable option when first row was clicked
+        //     return this.getSelectedLast()[0] === 0; // `this` === hot3
+        //   }
+        // },
+        // "row_below": {
+        //   name: 'Click to add row below' // Set custom text for predefined option
+        // },
+        // "about": { // Own custom option
+        //   name: 'Custom option',
+        //   callback: function() { // Callback for specific option
+        //     setTimeout(function() {
+        //       alert('Hello world!'); // Fire alert after menu close (with timeout)
+        //     }, 0);
+        //   }
+        // }
+      }
+    }
+    const settings = {
+      data: this.state.data,
+      type: "locus-acgt-dna-sequence",
+      colHeaders: true,
+      rowHeaders: true,
+      width: "1200",
+      height: "700",
+      stretchH: "all",
+      contextMenu
+    }
+
     return (
       <div id="hot-app">
         <HotTable
-          data={this.data}
-          type="locus-acgt-dna-sequence"
-          colHeaders={true}
-          rowHeaders={true}
-          width="1200"
-          height="700"
-          stretchH="all"
+          settings={settings}
         />
       </div>
     );

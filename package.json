@@ -5,7 +5,7 @@
   "dependencies": {
     "@handsontable/react": "^1.1.0",
     "bionode-seq": "^0.1.1",
-    "handsontable": "^5.0.1",
+    "handsontable": "^6.0.1",
     "ramda": "^0.25.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

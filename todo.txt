@@ -1,0 +1,24 @@
+move data, settings into app
+ux: properties for range of cells
+ux: set reference cell by clicking
+refresh: how?
+cell width depends on stripes vs text
+where does the data belong? (app, table, ...?  app.settings, app.data, ...)
+table seems to manage it pretty well.  should it be state?
+simple react dialog
+how to invoke it?
+
+Handsontable.setCellMeta(row, col, 'class', 'value')
+
+table.setCellMeta(row, col, 'drawStripes', true)
+
+how to get reference to the hot from react?
+
+https://fb.me/react-devtools
+
+cell-indexed map of data instead of 2D array? >> looks like not.
+
+
+model: store property how? redux?
+  redux: use afterchange hook to update the store state.
+  https://github.com/handsontable/react-handsontable/issues/1
