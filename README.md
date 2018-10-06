@@ -24,14 +24,14 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
 #### *AMPLICON*(sequence, start, end) → sequence
 
-  The bases from sequence, between start and end.
+The bases from sequence, between start and end.
 
-  AMPLICON("aacgtga", "ac", "tg") → "acgtg"
+=AMPLICON("aacgtga", "ac", "tg") → "acgtg"
 
 #### *BASE*(sequence, position) → base
 The base at that position.
 
-BASE("acgt", 3) → "g"
+=BASE("acgt", 3) → "g"
 
 #### *CONSENSUS*(range) → sequence
 Ambiguity-coded consensus sequence.
@@ -40,9 +40,9 @@ Ambiguity-coded consensus sequence.
 
 Number of times ambiguity-coded subsequence occurs within sequence.
 
-COUNT("acgaacgtacgacg", "acg") → 4
+=COUNT("acgaacgtacgacg", "acg") → 4
 
-COUNT("acgaacgtacgacg", "a") → 5
+=COUNT("acgaacgtacgacg", "a") → 5
 
 #### *FIND*(subsequence, sequence) → integer
 First position of ambiguity-coded subsequence within sequence.
@@ -55,20 +55,22 @@ First position of disagreement among several sequences.
 #### *LENGTH*(sequence) → integer
 
 The number of bases in the sequence.
-LENGTH("accga") → 5
+
+=LENGTH("accga") → 5
 
 #### *MELTING_TEMPERATURE*(sequence) → integer
 The melting temperature, in degrees Centigrade.
 
-MELTING_TEMPERATURE("aactatacgcagttc") → 36
+=MELTING_TEMPERATURE("aactatacgcagttc") → 36
 
 #### *RANDOM_SEQUENCE*(length) → sequence
 
 A random sequence of the specified length.
+
 #### *REVERSE_COMPLEMENT*(sequence) → sequence
 The reverse complement of the sequence.
 
-REVERSE_COMPLEMENT("aacgtata") → "tatacgtt"
+=REVERSE_COMPLEMENT("aacgtata") → "tatacgtt"
 
 ## Technology
 
