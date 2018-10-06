@@ -79,5 +79,7 @@ Locus A-C-G-T is built with [handsontable](https://handsontable.com/) and [Creat
 ## Author
 
 [Carl Manaster](manaster@pobox.com)
+
 [github](https://github.com/carlmanaster)
+
 [issues](https://github.com/carlmanaster/locus-acgt/projects/1)
