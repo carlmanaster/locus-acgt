@@ -1,3 +1,5 @@
+new createreactapp 
+
 move data, settings into app
 ux: properties for range of cells
 ux: set reference cell by clicking
