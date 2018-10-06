@@ -7,8 +7,8 @@
     "bionode-seq": "^0.1.1",
     "handsontable": "^6.0.1",
     "ramda": "^0.25.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-scripts": "2.0.4"
   },
   "scripts": {
