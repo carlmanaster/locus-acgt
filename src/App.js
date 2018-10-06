@@ -6,9 +6,9 @@ import dnaType from './cellTypes/dnaType'
 import Handsontable from 'handsontable'
 const { times } = require('ramda')
 
-Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType);
-Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator);
-Handsontable.hooks.add('afterRender', () => console.log('afterRender', arguments[0].hot))
+Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType)
+Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator)
+// Handsontable.hooks.add('afterRender', () => console.log('afterRender', arguments[0].hot))
 // console.log(`Handsontable.hooks:`, Handsontable.hooks)
 
 const bases = 'acgt'.split('')
