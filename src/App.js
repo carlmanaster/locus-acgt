@@ -5,16 +5,12 @@ import LocusTable from './LocusTable'
 import dnaType from './cellTypes/dnaType'
 import Handsontable from 'handsontable'
 const { times } = require('ramda')
+const { randomSequence } = require('./functions')
 
 Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType)
 Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator)
 // Handsontable.hooks.add('afterRender', () => console.log('afterRender', arguments[0].hot))
 // console.log(`Handsontable.hooks:`, Handsontable.hooks)
-
-const bases = 'acgt'.split('')
-const randomBase = () => bases[Math.floor(4 * Math.random())]
-const randomSequence = n => times(randomBase, n).join('')
-
 
 class App extends Component {
   constructor(props) {

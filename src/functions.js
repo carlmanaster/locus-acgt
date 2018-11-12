@@ -1,3 +1,5 @@
+const { times } = require('ramda')
+
 const amplicon = (sequence, start, end) => {
   const a = sequence.indexOf(start)
   if (a < 0) return ''
@@ -43,8 +45,13 @@ const count = (sequence, subsequence) => {
   return ((sequence.toLowerCase() || '').match(re) || []).length
 }
 
+const bases = 'acgt'.split('')
+const randomBase = () => bases[Math.floor(4 * Math.random())]
+const randomSequence = n => times(randomBase, n).join('')
+
 module.exports = {
   amplicon,
   find,
   count,
+  randomSequence
 }
