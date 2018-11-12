@@ -17,8 +17,8 @@ const visit = (hot, ranges, fn) => {
 class LocusTable extends React.Component {
   constructor(props) {
     super(props);
-    const {data} = props
-    this.state = {data}
+    const { data } = props
+    this.state = { data }
   }
 
   render() {
@@ -71,6 +71,7 @@ class LocusTable extends React.Component {
       width: "1200",
       height: "700",
       stretchH: "all",
+      formulas: true,
       contextMenu
     }
 

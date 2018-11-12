@@ -57,9 +57,6 @@ class App extends Component {
             <span className="App-title thymine">T&nbsp;</span>
             <span className="App-subtitle">a spreadsheet for sequences</span>
         </header>
-        <div className="controllers">
-          <label><input onChange={this.handleChange('displayText', [false, true])} type="checkbox" />Show sequence as text</label><br/>
-        </div>
         <LocusTable
           data = {this.state.data}
           name = "hot"

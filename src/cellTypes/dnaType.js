@@ -1,8 +1,10 @@
 import Handsontable from 'handsontable'
 
 const { checkType } = require('bionode-seq')
+const { parser } = require('../Parser')
 
 const validator = function(value, callback) {
+  // TODO: Maybe apply parser here?
   if (value == null) {
     value = '';
   }
@@ -62,13 +64,28 @@ const toColorText = function(sequence) {
   return div
 }
 
-const renderer = function(hot, td, row, col, prop, value, cellProperties) {
-  console.log(`hot.getCellMeta(row, col):`, hot.getCellMeta(row, col))
+const getValue = (hot, unparsedValue) => {
+  if (!unparsedValue.startsWith('='))
+    return unparsedValue
+  parser.setHot(hot)
+  const parsedResult = parser.parse(unparsedValue.substring(1))
+  return (parsedResult.error) ? parsedResult.error : parsedResult.result
+}
 
-  // console.log(`cellProperties:`, cellProperties)
-  // const div = toColorText(value)
-  // td.style.fontFamily = 'monospace';
-  const div = toStripes(value)
+const renderer = function(hot, td, row, col, prop, unparsedValue, cellProperties) {
+  const value = getValue(hot, unparsedValue)
+  if (Number.isInteger(value)) {
+    Handsontable.renderers.NumericRenderer(hot, td, row, col, prop, value, cellProperties)
+    return
+  }
+  if (checkType(value) !== 'dna') {
+    Handsontable.renderers.TextRenderer(hot, td, row, col, prop, value, cellProperties)
+    return
+  }
+
+  const div = toColorText(value)
+  td.style.fontFamily = 'monospace';
+  // const div = toStripes(value)
   Handsontable.renderers.TextRenderer.apply(this, arguments);
   td.removeChild(td.childNodes[0]);
   td.appendChild(div)
@@ -77,7 +94,7 @@ const renderer = function(hot, td, row, col, prop, value, cellProperties) {
 const editor = Handsontable.editors.TextEditor
 
 export default {
-  renderer,
-  validator,
+  renderer, //: Handsontable.renderers.TextRenderer,
+  validator: Handsontable.validators.TextValidator,
   editor
 };
