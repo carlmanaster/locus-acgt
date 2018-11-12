@@ -1,5 +1,5 @@
 const equal = require('assert').deepEqual
-const { find } = require('./functions')
+const { find, count } = require('./functions')
 
 describe(`functions.js`, () => {
 
@@ -22,7 +22,21 @@ describe(`functions.js`, () => {
     it(`should return -1 for not found`, () => {
       equal(find('cagt', 'tnnn'), -1)
     })
+  })
 
+  describe(`count`, () => {
+    it(`should count a`, () => {
+      equal(count('cagt', 'a'), 1)
+    })
+    it(`should count r`, () => {
+      equal(count('cagt', 'r'), 2)
+    })
+    it(`should count rr`, () => {
+      equal(count('cagt', 'rr'), 1)
+    })
+    it(`should return 0 for not found`, () => {
+      equal(count('cagt', 'tnnn'), 0)
+    })
   })
 
 })

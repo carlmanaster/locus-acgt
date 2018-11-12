@@ -25,16 +25,26 @@ const iupacAmbiguity = {
   n: '[acgt]',
 }
 
-const find = (sequence, subsequence) => {
-  const pattern = subsequence
+const iupacRegex = s => {
+  const pattern = s
   .toLowerCase()
   .split('')
   .reduce((a, c) => a += iupacAmbiguity[c], '')
-  const re = new RegExp(pattern)
+  return new RegExp(pattern, "g")
+}
+
+const find = (sequence, subsequence) => {
+  const re = iupacRegex(subsequence)
   return sequence.toLowerCase().search(re)
+}
+
+const count = (sequence, subsequence) => {
+  const re = iupacRegex(subsequence)
+  return ((sequence.toLowerCase() || '').match(re) || []).length
 }
 
 module.exports = {
   amplicon,
-  find
+  find,
+  count,
 }
