@@ -35,7 +35,8 @@ You can create a list of color-coded sequence tags, to identify interesting subs
    =BASE("acgt", 3) → "g"
 
 * #### *CONSENSUS*(range) → sequence
-Ambiguity-coded consensus sequence.
+
+   Ambiguity-coded consensus sequence.
 
 * #### *COUNT*(sequence, subsequence) → integer
 
