@@ -26,6 +26,23 @@ const iupacAmbiguity = {
   v: '[acg]',
   n: '[acgt]',
 }
+const iupacAmbiguityLookup = {
+  a: 'a',
+  c: 'c',
+  g: 'g',
+  t: 't',
+  ag: 'r',
+  ct: 'y',
+  gc: 's',
+  at: 'w',
+  gt: 'k',
+  ac: 'm',
+  cgt: 'b',
+  agt: 'd',
+  act: 'h',
+  acg: 'v',
+  acgt: 'n',
+}
 
 const iupacRegex = s => {
   const pattern = s
@@ -49,9 +66,29 @@ const bases = 'acgt'.split('')
 const randomBase = () => bases[Math.floor(4 * Math.random())]
 const randomSequence = n => times(randomBase, n).join('')
 
+const consensusBase = (sequences, index) => {
+  const set = new Set()
+  sequences.forEach(s => set.add(s.charAt(index)))
+  const v = Array.from(set)
+  v.sort()
+  return iupacAmbiguityLookup[v.join('')]
+}
+
+const consensus = sequences => {
+  let n = sequences[0].length
+  for (let i = 1; i < sequences.length; i++)
+    n = Math.min(n, sequences[i].length)
+  let result = ''
+  for (let i = 0; i < n; i++) {
+    result += consensusBase(sequences, i)
+  }
+  return result
+}
+
 module.exports = {
   amplicon,
   find,
   count,
-  randomSequence
+  randomSequence,
+  consensus
 }

@@ -1,5 +1,6 @@
+const { flatten } = require('ramda')
 const { complement, reverse } = require('bionode-seq')
-const { amplicon, find, count, randomSequence } = require('./functions')
+const { amplicon, find, count, randomSequence, consensus } = require('./functions')
 const { Parser } = require('hot-formula-parser')
 const parser = new Parser()
 
@@ -17,6 +18,33 @@ parser.on('callCellValue', (cellCoord, callback) => {
   else {
     const parsed = parser.parse(data.substring(1).toUpperCase())
     callback(parsed.result)
+  }
+})
+
+parser.on('callRangeValue', function(startCellCoord, endCellCoord, done) {
+  const range = []
+  const r0 = startCellCoord.row.index
+  const r1 = endCellCoord.row.index
+  const c0 = startCellCoord.column.index
+  const c1 = endCellCoord.column.index
+
+  for (var row = r0; row <= r1; row++) {
+    const fragment = [];
+
+    for (var col = c0; col <= c1; col++) {
+      const data = hot.getData()[row][col]
+      if (data[0] !== '=')
+        fragment.push(data)
+      else {
+        const parsed = parser.parse(data.substring(1).toUpperCase())
+        fragment.push(parsed.result)
+      }
+    }
+    range.push(fragment);
+  }
+
+  if (range) {
+    done(range)
   }
 })
 
@@ -48,6 +76,9 @@ parser.on('callFunction', (name, params, done) => {
       break
     case 'LENGTH':
       done(params[0].length)
+      break
+    case 'CONSENSUS':
+      done(consensus(flatten(params[0])))
       break
     default:
       break
