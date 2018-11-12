@@ -46,6 +46,9 @@ parser.on('callFunction', (name, params, done) => {
     case 'BASE':
       done(params[0].substring(params[1], params[1] + 1))
       break
+    case 'LENGTH':
+      done(params[0].length)
+      break
     default:
       break
   }
