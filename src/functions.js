@@ -33,7 +33,7 @@ const iupacAmbiguityLookup = {
   t: 't',
   ag: 'r',
   ct: 'y',
-  gc: 's',
+  cg: 's',
   at: 'w',
   gt: 'k',
   ac: 'm',
