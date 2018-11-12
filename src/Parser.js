@@ -40,7 +40,8 @@ parser.on('callFunction', (name, params, done) => {
     case 'COUNT':
       done(count(params[0], params[1]))
       break
-    // default: done('')
+    default:
+      break
   }
 })
 
