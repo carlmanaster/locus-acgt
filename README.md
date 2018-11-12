@@ -22,55 +22,60 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
 ### Sequence-specific Functions
 
-#### *AMPLICON*(sequence, start, end) → sequence
+* #### *AMPLICON*(sequence, start, end) → sequence
 
-The bases from sequence, between start and end.
+   The bases from sequence, between start and end.
 
-=AMPLICON("aacgtga", "ac", "tg") → "acgtg"
+   =AMPLICON("aacgtga", "ac", "tg") → "acgtg"
 
-#### *BASE*(sequence, position) → base
-The base at that position.
+* #### *BASE*(sequence, position) → base
 
-=BASE("acgt", 3) → "g"
+   The base at that position.
 
-#### *CONSENSUS*(range) → sequence
+   =BASE("acgt", 3) → "g"
+
+* #### *CONSENSUS*(range) → sequence
 Ambiguity-coded consensus sequence.
 
-#### *COUNT*(sequence, subsequence) → integer
+* #### *COUNT*(sequence, subsequence) → integer
 
-Number of times ambiguity-coded subsequence occurs within sequence.
+   Number of times ambiguity-coded subsequence occurs within sequence.
 
-=COUNT("acgaacgtacgacg", "acg") → 4
+   =COUNT("acgaacgtacgacg", "acg") → 4
 
-=COUNT("acgaacgtacgacg", "a") → 5
+   =COUNT("acgaacgtacgacg", "a") → 5
 
-#### *FIND*(subsequence, sequence) → integer
-First position of ambiguity-coded subsequence within sequence.
+* #### *FIND*(subsequence, sequence) → integer
 
-=FIND("acg", "acgaacgtacgacg") → 1
+   First position of ambiguity-coded subsequence within sequence.
 
-#### *FIRST_DIFFERENCE*(range) → integer
-First position of disagreement among several sequences.
+   =FIND("acg", "acgaacgtacgacg") → 1
 
-#### *LENGTH*(sequence) → integer
+* #### *FIRST_DIFFERENCE*(range) → integer
 
-The number of bases in the sequence.
+   First position of disagreement among several sequences.
 
-=LENGTH("accga") → 5
+* #### *LENGTH*(sequence) → integer
 
-#### *MELTING_TEMPERATURE*(sequence) → integer
-The melting temperature, in degrees Centigrade.
+   The number of bases in the sequence.
 
-=MELTING_TEMPERATURE("aactatacgcagttc") → 36
+   =LENGTH("accga") → 5
 
-#### *RANDOM_SEQUENCE*(length) → sequence
+* #### *MELTING_TEMPERATURE*(sequence) → integer
 
-A random sequence of the specified length.
+   The melting temperature, in degrees Centigrade.
 
-#### *REVERSE_COMPLEMENT*(sequence) → sequence
-The reverse complement of the sequence.
+   =MELTING_TEMPERATURE("aactatacgcagttc") → 36
 
-=REVERSE_COMPLEMENT("aacgtata") → "tatacgtt"
+* #### *RANDOM_SEQUENCE*(length) → sequence
+
+   A random sequence of the specified length.
+
+* #### *REVERSE_COMPLEMENT*(sequence) → sequence
+
+   The reverse complement of the sequence.
+
+   =REVERSE_COMPLEMENT("aacgtata") → "tatacgtt"
 
 ## Technology
 
