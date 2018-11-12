@@ -34,6 +34,12 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
    =BASE("acgt", 3) → "g"
 
+* #### *COMPLEMENT*(sequence) → sequence
+
+   The complement of the sequence.
+
+   =COMPLEMENT("aacgtata") → "ttgcatat"
+
 * #### *CONSENSUS*(range) → sequence
 
    Ambiguity-coded consensus sequence.
@@ -71,6 +77,12 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 * #### *RANDOM_SEQUENCE*(length) → sequence
 
    A random sequence of the specified length.
+
+* #### *REVERSE*(sequence) → sequence
+
+   The reverse of the sequence.
+
+   =REVERSE("aacgtata") → "atatgcaa"
 
 * #### *REVERSE_COMPLEMENT*(sequence) → sequence
 
