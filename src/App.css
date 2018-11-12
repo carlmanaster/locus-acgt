@@ -1,0 +1,33 @@
+/* http://www.jalview.org/help/html/colourSchemes/ */
+.adenine {color: #64F73F; stroke: #64F73F}
+.cytosine {color: #FFB340; stroke: #FFB340}
+.guanine {color: #EB413C; stroke: #EB413C}
+.thymine {color: #3C88EE; stroke: #3C88EE}
+.uracil {color: #3C88EE; stroke: #3C88EE}
+
+/* https://www.w3schools.com/colors/colors_picker.asp is helpful */
+.adenine-light {color: #d7fdce; stroke: #d7fdce}
+.cytosine-light {color: #ffebcc; stroke: #ffebcc}
+.guanine-light {color: #fad2d1; stroke: #fad2d1}
+.thymine-light {color: #d0e3fb; stroke: #d0e3fb}
+.uracil-light {color: #d0e3fb; stroke: #d0e3fb}
+
+.App-header {
+  background-color: #222;
+  padding: 10px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-subtitle {
+  font-size: 0.8em;
+  font-style: italic;
+  color: #999;
+}
+
+.App-intro {
+  font-size: large;
+}
