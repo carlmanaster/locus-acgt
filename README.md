@@ -46,11 +46,11 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
    =COUNT("acgaacgtacgacg", "a") → 5
 
-* #### *FIND*(subsequence, sequence) → integer
+* #### *FIND*(sequence, subsequence) → integer
 
-   First position of ambiguity-coded subsequence within sequence.
+   Zero-based first position of ambiguity-coded subsequence within sequence.
 
-   =FIND("acg", "acgaacgtacgacg") → 1
+   =FIND("acg", "acgaacgtacgacg") → 0
 
 * #### *FIRST_DIFFERENCE*(range) → integer
 
