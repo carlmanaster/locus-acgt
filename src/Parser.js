@@ -43,6 +43,9 @@ parser.on('callFunction', (name, params, done) => {
     case 'RANDOM_SEQUENCE':
       done(randomSequence(params[0]))
       break
+    case 'BASE':
+      done(params[0].substring(params[1], params[1] + 1))
+      break
     default:
       break
   }
