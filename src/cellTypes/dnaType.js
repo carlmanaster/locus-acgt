@@ -78,6 +78,10 @@ const renderer = function(hot, td, row, col, prop, unparsedValue, cellProperties
     Handsontable.renderers.NumericRenderer(hot, td, row, col, prop, value, cellProperties)
     return
   }
+  if (typeof value === 'boolean') {
+    Handsontable.renderers.TextRenderer(hot, td, row, col, prop, value, cellProperties)
+    return
+  }
   if (checkType(value) !== 'dna') {
     Handsontable.renderers.TextRenderer(hot, td, row, col, prop, value, cellProperties)
     return
