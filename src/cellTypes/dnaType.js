@@ -34,7 +34,8 @@ const baseMapLight = {
   t: 'thymine-light'
 }
 
-const REFERENCE = 'acactatacgtaggactgaggcatgacgcgatcgacgcgatacgagcatcgatcgactacgcggcatcacgaagc'
+// const REFERENCE = 'acactatacgtaggactgaggcatgacgcgatcgacgcgatacgagcatcgatcgactacgcggcatcacgaagc'
+const REFERENCE = ''
 
 const base = (c, match) => match? baseMapLight[c.toLowerCase()] :baseMap[c.toLowerCase()]
 const toSpan = (c, match) => `<span class="${base(c, match)}">${c}</span>`

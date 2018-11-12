@@ -1,4 +1,4 @@
-const { complement } = require('bionode-seq')
+const { complement, reverse } = require('bionode-seq')
 const { Parser } = require('hot-formula-parser')
 const parser = new Parser()
 
@@ -23,6 +23,12 @@ parser.on('callFunction', (name, params, done) => {
   switch (name.toUpperCase()) {
     case 'REVERSE_COMPLEMENT':
       done(complement(params[0], true))
+      break
+    case 'REVERSE':
+      done(reverse(params[0]))
+      break
+    case 'COMPLEMENT':
+      done(complement(params[0], false))
       break
     default: done('')
   }
