@@ -1,5 +1,5 @@
 const { complement, reverse } = require('bionode-seq')
-const { amplicon } = require('./functions')
+const { amplicon, find } = require('./functions')
 const { Parser } = require('hot-formula-parser')
 const parser = new Parser()
 
@@ -34,7 +34,10 @@ parser.on('callFunction', (name, params, done) => {
     case 'AMPLICON':
       done(amplicon(params[0], params[1], params[2]))
       break
-    default: done('')
+    case 'FIND':
+      done(find(params[0], params[1]))
+      break
+    // default: done('')
   }
 })
 
