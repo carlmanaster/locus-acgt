@@ -85,10 +85,31 @@ const consensus = sequences => {
   return result
 }
 
+const allSame = (sequences, index) => {
+  switch(consensusBase(sequences, index)) {
+    case 'a':
+    case 'c':
+    case 'g':
+    case 't':
+      return true
+    default:
+      return false
+  }
+}
+
+const firstDifference = sequences => {
+  let n = sequences[0].length
+  for (let i = 0; i < n; i++) {
+    if (!allSame(sequences, i)) return i
+  }
+  return -1
+}
+
 module.exports = {
   amplicon,
   find,
   count,
   randomSequence,
-  consensus
+  consensus,
+  firstDifference
 }

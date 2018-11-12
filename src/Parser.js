@@ -1,6 +1,12 @@
 const { flatten } = require('ramda')
 const { complement, reverse } = require('bionode-seq')
-const { amplicon, find, count, randomSequence, consensus } = require('./functions')
+const {
+  amplicon,
+  find,
+  count,
+  randomSequence,
+  consensus,
+  firstDifference } = require('./functions')
 const { Parser } = require('hot-formula-parser')
 const parser = new Parser()
 
@@ -79,6 +85,9 @@ parser.on('callFunction', (name, params, done) => {
       break
     case 'CONSENSUS':
       done(consensus(flatten(params[0])))
+      break
+    case 'FIRST_DIFFERENCE':
+      done(firstDifference(flatten(params[0])))
       break
     default:
       break
