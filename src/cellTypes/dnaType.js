@@ -3,6 +3,7 @@ import Handsontable from 'handsontable'
 const { checkType } = require('bionode-seq')
 const { parser } = require('../Parser')
 
+// eslint-disable-next-line
 const validator = function(value, callback) {
   // TODO: Maybe apply parser here?
   if (value == null) {
@@ -41,6 +42,7 @@ const base = (c, match) => match? baseMapLight[c.toLowerCase()] :baseMap[c.toLow
 const toSpan = (c, match) => `<span class="${base(c, match)}">${c}</span>`
 const toStripe = (c, x, match) => `<line class="${base(c, match)}" y1="0" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
 
+// eslint-disable-next-line
 const toStripes = sequence => {
   const chars = sequence.toString().split('')
   let stripes = ''
