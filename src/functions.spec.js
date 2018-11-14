@@ -1,6 +1,9 @@
 const equal = require('assert').deepEqual
-const { find, count } = require('./functions')
+const { find, count, meltingTemperature} = require('./functions')
 
+const close = (actual, expected, tolerance) => {
+  equal(true, Math.abs(expected - actual) < tolerance, `${actual} not close enough to ${expected}`)
+}
 describe(`functions.js`, () => {
 
   describe(`find()`, () => {
@@ -39,4 +42,22 @@ describe(`functions.js`, () => {
     })
   })
 
+  describe(`meltingTemperature`, () => {
+    it(`should get the right values for short sequences`, () => {
+      close(meltingTemperature('gtcgctcaaatg'), 36.0, 0.1)
+      close(meltingTemperature('ggaaggatcccc'), 40.0, 0.1)
+      close(meltingTemperature('tgagagacgacc'), 38.0, 0.1)
+      close(meltingTemperature('ctgttagtcata'), 32.0, 0.1)
+      close(meltingTemperature('tccgtaaacctg'), 36.0, 0.1)
+    })
+
+    it(`should get the right values for long sequences`, () => {
+      close(meltingTemperature('gtcgctcaaatgatcatacaagtga'), 54.4, 0.1)
+      close(meltingTemperature('ggaaggatcccccattctaaaaccc'), 59.3, 0.1)
+      close(meltingTemperature('tgagagacgaccaaatacagaacac'), 56.0, 0.1)
+      close(meltingTemperature('ctgttagtcatagagaccagtactt'), 54.4, 0.1)
+      close(meltingTemperature('tccgtaaacctgtcgagcctgtctt'), 59.3, 0.1)
+    })
+
+  })
 })

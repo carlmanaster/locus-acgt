@@ -82,7 +82,7 @@ const getValue = (hot, unparsedValue) => {
 
 const renderer = function(hot, td, row, col, prop, unparsedValue, cellProperties) {
   const value = getValue(hot, unparsedValue)
-  if (Number.isInteger(value)) {
+  if (typeof value === 'number') {
     Handsontable.renderers.NumericRenderer(hot, td, row, col, prop, value, cellProperties)
     return
   }

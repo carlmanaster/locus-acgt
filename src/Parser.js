@@ -6,7 +6,8 @@ const {
   count,
   randomSequence,
   consensus,
-  firstDifference } = require('./functions')
+  firstDifference,
+  meltingTemperature } = require('./functions')
 const { Parser } = require('hot-formula-parser')
 const parser = new Parser()
 
@@ -88,6 +89,9 @@ parser.on('callFunction', (name, params, done) => {
       break
     case 'FIRST_DIFFERENCE':
       done(firstDifference(flatten(params[0])))
+      break
+    case 'MELTING_TEMPERATURE':
+      done(Math.round(10 * meltingTemperature(params[0])) / 10)
       break
     default:
       break

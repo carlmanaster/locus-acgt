@@ -16,7 +16,7 @@ const iupacAmbiguity = {
   t: 't',
   r: '[ag]',
   y: '[ct]',
-  s: '[gc]',
+  s: '[cg]',
   w: '[at]',
   k: '[gt]',
   m: '[ac]',
@@ -45,6 +45,7 @@ const iupacAmbiguityLookup = {
 }
 
 const looksLikeDna = s => {
+  if (typeof s === 'number') return false
   return s.replace(/[acgtryswkmbdhvn]/gi, '') === ''
 }
 
@@ -109,6 +110,16 @@ const firstDifference = sequences => {
   return -1
 }
 
+const meltingTemperature = sequence => {
+  if (sequence.length <= 13) {
+    const at = count(sequence, 'w')
+    const cg = count(sequence, 's')
+    return 2 * at + 4 * cg
+  }
+  const cg = count(sequence, 's')
+  return 64.9 + 41 * (cg - 16.4) / sequence.length
+}
+
 module.exports = {
   amplicon,
   find,
@@ -116,5 +127,6 @@ module.exports = {
   randomSequence,
   consensus,
   firstDifference,
-  looksLikeDna
+  looksLikeDna,
+  meltingTemperature
 }
