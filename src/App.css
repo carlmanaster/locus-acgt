@@ -4,6 +4,7 @@
 .guanine {color: #EB413C; stroke: #EB413C}
 .thymine {color: #3C88EE; stroke: #3C88EE}
 .uracil {color: #3C88EE; stroke: #3C88EE}
+.ambiguous {background-color: #DDD}
 
 /* https://www.w3schools.com/colors/colors_picker.asp is helpful */
 .adenine-light {color: #d7fdce; stroke: #d7fdce}

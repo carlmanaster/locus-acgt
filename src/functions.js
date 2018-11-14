@@ -44,6 +44,10 @@ const iupacAmbiguityLookup = {
   acgt: 'n',
 }
 
+const looksLikeDna = s => {
+  return s.toLowerCase().replace(/[acgtryswkmbdhvn]/g, '') === ''
+}
+
 const iupacRegex = s => {
   const pattern = s
   .toLowerCase()
@@ -111,5 +115,6 @@ module.exports = {
   count,
   randomSequence,
   consensus,
-  firstDifference
+  firstDifference,
+  looksLikeDna
 }

@@ -2,6 +2,7 @@ import Handsontable from 'handsontable'
 
 const { checkType } = require('bionode-seq')
 const { parser } = require('../Parser')
+const { looksLikeDna } = require('../functions')
 
 // eslint-disable-next-line
 const validator = function(value, callback) {
@@ -38,7 +39,11 @@ const baseMapLight = {
 // const REFERENCE = 'acactatacgtaggactgaggcatgacgcgatcgacgcgatacgagcatcgatcgactacgcggcatcacgaagc'
 const REFERENCE = ''
 
-const base = (c, match) => match? baseMapLight[c.toLowerCase()] :baseMap[c.toLowerCase()]
+const base = (c, match) => {
+  const map = match ? baseMapLight : baseMap
+  if (c.toLowerCase() in map) return map[c.toLowerCase()]
+  return 'ambiguous'
+}
 const toSpan = (c, match) => `<span class="${base(c, match)}">${c}</span>`
 const toStripe = (c, x, match) => `<line class="${base(c, match)}" y1="0" y2="20" x1="${x}" x2="${x}" style="stroke-width:1"/>`
 
@@ -85,7 +90,7 @@ const renderer = function(hot, td, row, col, prop, unparsedValue, cellProperties
     Handsontable.renderers.TextRenderer(hot, td, row, col, prop, value, cellProperties)
     return
   }
-  if (checkType(value) !== 'dna') {
+  if (!looksLikeDna(value)) {
     Handsontable.renderers.TextRenderer(hot, td, row, col, prop, value, cellProperties)
     return
   }
