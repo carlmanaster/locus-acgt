@@ -62,6 +62,12 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
    First position of disagreement among several sequences.
 
+* #### *GC_CONTENT*(sequence) → integer
+
+   The percent of G & C bases in the sequence.
+
+   =GC_CONTENT("accga") → 60
+
 * #### *LENGTH*(sequence) → integer
 
    The number of bases in the sequence.

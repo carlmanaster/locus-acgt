@@ -7,7 +7,8 @@ const {
   randomSequence,
   consensus,
   firstDifference,
-  meltingTemperature } = require('./functions')
+  meltingTemperature,
+  gcContent } = require('./functions')
 const { Parser } = require('hot-formula-parser')
 const parser = new Parser()
 
@@ -92,6 +93,9 @@ parser.on('callFunction', (name, params, done) => {
       break
     case 'MELTING_TEMPERATURE':
       done(Math.round(10 * meltingTemperature(params[0])) / 10)
+      break
+    case 'GC_CONTENT':
+      done(Math.round(gcContent(params[0])))
       break
     default:
       break

@@ -120,6 +120,8 @@ const meltingTemperature = sequence => {
   return 64.9 + 41 * (cg - 16.4) / sequence.length
 }
 
+const gcContent = sequence => 100 * count(sequence, 's') / sequence.length
+
 module.exports = {
   amplicon,
   find,
@@ -128,5 +130,6 @@ module.exports = {
   consensus,
   firstDifference,
   looksLikeDna,
-  meltingTemperature
+  meltingTemperature,
+  gcContent
 }
