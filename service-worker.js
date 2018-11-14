@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/locus-acgt/precache-manifest.d814cdfd598ee952695d711dedd9f2cf.js"
+  "/locus-acgt/precache-manifest.98b893929787fcc1f75d3ec6c955647c.js"
 );
 
 workbox.clientsClaim();
