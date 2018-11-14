@@ -45,7 +45,7 @@ const iupacAmbiguityLookup = {
 }
 
 const looksLikeDna = s => {
-  return s.toLowerCase().replace(/[acgtryswkmbdhvn]/g, '') === ''
+  return s.replace(/[acgtryswkmbdhvn]/gi, '') === ''
 }
 
 const iupacRegex = s => {
@@ -53,17 +53,17 @@ const iupacRegex = s => {
   .toLowerCase()
   .split('')
   .reduce((a, c) => a += iupacAmbiguity[c], '')
-  return new RegExp(pattern, "g")
+  return new RegExp(pattern, "gi")
 }
 
 const find = (sequence, subsequence) => {
   const re = iupacRegex(subsequence)
-  return sequence.toLowerCase().search(re)
+  return sequence.search(re)
 }
 
 const count = (sequence, subsequence) => {
   const re = iupacRegex(subsequence)
-  return ((sequence.toLowerCase() || '').match(re) || []).length
+  return ((sequence || '').match(re) || []).length
 }
 
 const bases = 'acgt'.split('')
