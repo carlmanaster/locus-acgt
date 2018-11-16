@@ -38,7 +38,6 @@ class App extends Component {
         ['tccaggtacattcatgcattgcctt', ''],
         ['cat', ''],
         ['gcc', ''],
-        [randomSequence(25), ''],
         ['=AMPLICON(A1, A3, A4)', 'AMPLICON(A1, A3, A4)'],
         ['=BASE(A1, 1)', 'BASE(A1, 1)'],
         ['=COMPLEMENT(A1)', 'COMPLEMENT(A1)'],
