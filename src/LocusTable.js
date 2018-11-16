@@ -72,6 +72,7 @@ class LocusTable extends React.Component {
       height: "700",
       stretchH: "all",
       formulas: true,
+      manualColumnResize: true,
       contextMenu
     }
 
