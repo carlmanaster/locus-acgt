@@ -4,27 +4,49 @@ import 'handsontable/dist/handsontable.full.css';
 import LocusTable from './LocusTable'
 import dnaType from './cellTypes/dnaType'
 import Handsontable from 'handsontable'
-const { times } = require('ramda')
-const { randomSequence } = require('./functions')
 
+let fillDetails = {}
 Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType)
 Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator)
-Handsontable.hooks.add('beforeAutofillInsidePopulate', (start, end, data) => {
-  console.log('beforeAutofillInsidePopulate', start, end, data)
+Handsontable.hooks.add('modifyAutofillRange', (entireArea, startArea) => {
+  // console.log('modifyAutofillRange')
+  // console.log(`startArea:`, startArea)
+  // console.log(`entireArea:`, entireArea)
+  fillDetails = {startArea, entireArea}
+})
+Handsontable.hooks.add('beforeAutofillInsidePopulate', (index, direction, input, deltas) => {
+  // console.log('beforeAutofillInsidePopulate')
+  // console.log(`index:`, index)
+  // console.log(`direction:`, direction)
+  // console.log(`input:`, input)
+  // console.log(`deltas:`, deltas)
+  // console.log('beforeAutofillInsidePopulate', start, end, data)
   // data[0][0] = 'ggggggggggg' // does not work
 })
-Handsontable.hooks.add('beforeAutofill', (index, direction, input, deltas) => {
-  console.log('beforeAutofill', index, direction, input, deltas)
+Handsontable.hooks.add('beforeAutofill', (start, end, data) => {
+  // console.log('beforeAutofill')
+  // console.log(`start:`, start)
+  // console.log(`end:`, end)
+  // console.log(`data:`, data)
 })
+
 Handsontable.hooks.add('beforeChange', (changes, source) => {
-  console.log('beforeChange', changes, source)
+  if (source === 'Autofill.fill') {
+    const { startArea, entireArea } = fillDetails
+
+    console.log('beforeChange');
+    console.log(`fillDetails:`, fillDetails)
+    console.log(`changes:`, changes)
+    console.log(`source:`, source)
+    // each changes element is [row, column, old, new]
+  }
   // changes[0][3] = 'aaaaaa' // WORKS
 })
 Handsontable.hooks.add('afterChange', (changes, source) => {
-  console.log('afterChange', changes, source)
+  // console.log('afterChange', changes, source)
 })
 Handsontable.hooks.add('afterCopy', (data, coords) => {
-  console.log('afterCopy', data, coords)
+  // console.log('afterCopy', data, coords)
 })
 // Handsontable.hooks.add('afterRender', () => console.log('afterRender', arguments[0].hot))
 // console.log(`Handsontable.hooks:`, Handsontable.hooks)
@@ -34,23 +56,23 @@ class App extends Component {
     super(props);
     this.state = {
       data: [
-        ['tccagggacattcatgcatcgcctt', ''],
-        ['tccaggtacattcatgcattgcctt', ''],
-        ['cat', ''],
-        ['gcc', ''],
-        ['=AMPLICON(A1, A3, A4)', 'AMPLICON(A1, A3, A4)'],
-        ['=BASE(A1, 1)', 'BASE(A1, 1)'],
-        ['=COMPLEMENT(A1)', 'COMPLEMENT(A1)'],
-        ['=CONSENSUS(A1:A2)', 'CONSENSUS(A1:A2)'],
-        ['=COUNT(A1, A3)', 'COUNT(A1, A3)'],
-        ['=FIND(A1, A3)', 'FIND(A1, A3)'],
-        ['=FIRST_DIFFERENCE(A1:A2)', 'FIRST_DIFFERENCE(A1:A2)'],
-        ['=GC_CONTENT(A1)', 'GC_CONTENT(A1)'],
-        ['=LENGTH(A1)', 'LENGTH(A1)'],
-        ['=MELTING_TEMPERATURE(A1)', 'MELTING_TEMPERATURE(A1)'],
-        ['=RANDOM_SEQUENCE(30)', 'RANDOM_SEQUENCE(30)'],
-        ['=REVERSE_COMPLEMENT(A1)', 'REVERSE_COMPLEMENT(A1)'],
-        ['=REVERSE(A1)', 'REVERSE(A1)'],
+        ['tccagggacattcatgcatcgcctt', '', '', '', '', '', '', '', '', ''],
+        ['tccaggtacattcatgcattgcctt', '', '', '', '', '', '', '', '', ''],
+        ['cat', '', '', '', '', '', '', '', '', ''],
+        ['gcc', '', '', '', '', '', '', '', '', ''],
+        ['=AMPLICON(A1, A3, A4)', 'AMPLICON(A1, A3, A4)', '', '', '', '', '', '', '', ''],
+        ['=BASE(A1, 1)', 'BASE(A1, 1)', '', '', '', '', '', '', '', ''],
+        ['=COMPLEMENT(A1)', 'COMPLEMENT(A1)', '', '', '', '', '', '', '', ''],
+        ['=CONSENSUS(A1:A2)', 'CONSENSUS(A1:A2)', '', '', '', '', '', '', '', ''],
+        ['=COUNT(A1, A3)', 'COUNT(A1, A3)', '', '', '', '', '', '', '', ''],
+        ['=FIND(A1, A3)', 'FIND(A1, A3)', '', '', '', '', '', '', '', ''],
+        ['=FIRST_DIFFERENCE(A1:A2)', 'FIRST_DIFFERENCE(A1:A2)', '', '', '', '', '', '', '', ''],
+        ['=GC_CONTENT(A1)', 'GC_CONTENT(A1)', '', '', '', '', '', '', '', ''],
+        ['=LENGTH(A1)', 'LENGTH(A1)', '', '', '', '', '', '', '', ''],
+        ['=MELTING_TEMPERATURE(A1)', 'MELTING_TEMPERATURE(A1)', '', '', '', '', '', '', '', ''],
+        ['=RANDOM_SEQUENCE(30)', 'RANDOM_SEQUENCE(30)', '', '', '', '', '', '', '', ''],
+        ['=REVERSE_COMPLEMENT(A1)', 'REVERSE_COMPLEMENT(A1)', '', '', '', '', '', '', '', ''],
+        ['=REVERSE(A1)', 'REVERSE(A1)', '', '', '', '', '', '', '', ''],
       ],
       // data: times( () => times (() => randomSequence(25), 4), 6),
       settings: {
