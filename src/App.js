@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'handsontable/dist/handsontable.full.css';
+import { sourceCellForDrag, translateCell } from './cells'
 import LocusTable from './LocusTable'
 import dnaType from './cellTypes/dnaType'
 import Handsontable from 'handsontable'
@@ -24,32 +25,20 @@ Handsontable.hooks.add('beforeAutofillInsidePopulate', (index, direction, input,
   // data[0][0] = 'ggggggggggg' // does not work
 })
 Handsontable.hooks.add('beforeAutofill', (start, end, data) => {
-  // console.log('beforeAutofill')
-  // console.log(`start:`, start)
-  // console.log(`end:`, end)
-  // console.log(`data:`, data)
 })
 
 Handsontable.hooks.add('beforeChange', (changes, source) => {
   if (source === 'Autofill.fill') {
     const { startArea, entireArea } = fillDetails
 
-    console.log('beforeChange');
-    console.log(`fillDetails:`, fillDetails)
-    console.log(`changes:`, changes)
-    console.log(`source:`, source)
-    // each changes element is [row, column, old, new]
+    changes.forEach(change => {
+      const [row, col, oldCell, cell] = change
+      const source = sourceCellForDrag(row, col, startArea, entireArea)
+      const translated = translateCell(source, {row, col}, cell)
+      change[3] = translated
+    })
   }
-  // changes[0][3] = 'aaaaaa' // WORKS
 })
-Handsontable.hooks.add('afterChange', (changes, source) => {
-  // console.log('afterChange', changes, source)
-})
-Handsontable.hooks.add('afterCopy', (data, coords) => {
-  // console.log('afterCopy', data, coords)
-})
-// Handsontable.hooks.add('afterRender', () => console.log('afterRender', arguments[0].hot))
-// console.log(`Handsontable.hooks:`, Handsontable.hooks)
 
 class App extends Component {
   constructor(props) {

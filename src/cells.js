@@ -14,7 +14,9 @@ const translateCell = (source, destination, cell) => {
 }
 
 const getReferences = formula => {
-  return formula.match(/\$?[a-z]{1,2}\$?\d+/gi)
+  const references = formula.match(/\$?[a-z]{1,2}\$?\d+/gi)
+  if (!references) return []
+  return references
 }
 
 const toRowIndex = n => n - 1
