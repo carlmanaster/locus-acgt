@@ -68,7 +68,7 @@ class LocusTable extends React.Component {
       type: "locus-acgt-dna-sequence",
       colHeaders: true,
       rowHeaders: true,
-      width: "600",
+      width: "1200",
       height: "700",
       stretchH: "all",
       formulas: true,

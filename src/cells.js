@@ -59,6 +59,24 @@ const translateReference = (source, destination, reference) => {
   return toReference(coordinates, absoluteRow, absoluteCol)
 }
 
+const sourceCellForDrag = (r, c, startArea, entireArea) => {
+  const [T, L, B, R] = [0, 1, 2, 3]
+  const startHeight = startArea[B] - startArea[T] + 1
+  const entireHeight = entireArea[B] - entireArea[T] + 1
+  const direction = entireHeight > startHeight ? 'vertical' : 'horizontal'
+
+  if (direction === 'vertical') {
+    const col = c
+    const row = startArea[T] + (r - entireArea[T]) % startHeight
+    return { row, col }
+  } else {
+    const row = r
+    const startWidth = startArea[R] - startArea[L] + 1
+    const col = startArea[L] + (c - entireArea[L]) % startWidth
+    return { row, col }
+  }
+}
+
 module.exports = {
   isFormula,
   getFormula,
@@ -71,4 +89,5 @@ module.exports = {
   toColumn,
   toCoordinates,
   translateReference,
+  sourceCellForDrag
 }
