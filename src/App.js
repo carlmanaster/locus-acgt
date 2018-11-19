@@ -32,6 +32,7 @@ Handsontable.hooks.add('beforeChange', (changes, source) => {
     const { startArea, entireArea } = fillDetails
 
     changes.forEach(change => {
+      // eslint-disable-next-line
       const [row, col, oldCell, cell] = change
       const source = sourceCellForDrag(row, col, startArea, entireArea)
       const translated = translateCell(source, {row, col}, cell)
