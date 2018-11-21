@@ -11,7 +11,8 @@ const {
   toColumn,
   toReference,
   toCoordinates,
-  sourceCellForDrag
+  sourceCellForFill,
+  sourceIndex
 } = require('./cells')
 
 describe(`cells.js`, () => {
@@ -124,30 +125,79 @@ describe(`cells.js`, () => {
     })
   })
 
-  describe(`sourceCellForDrag`, () => {
+  describe(`sourceIndex`, () => {
+    it(`should apply single index to all elements`, () => {
+      equal(0, sourceIndex(1, [0, 0], [0, 5]))
+      equal(1, sourceIndex(5, [1, 1], [1, 5]))
+    })
+    it(`should cycle when filling forward`, () => {
+      equal(0, sourceIndex(2, [0, 1], [0, 5]))
+      equal(1, sourceIndex(3, [0, 1], [0, 5]))
+      equal(0, sourceIndex(4, [0, 1], [0, 5]))
+      equal(1, sourceIndex(5, [0, 1], [0, 5]))
+    })
+    it(`should cycle when filling backward`, () => {
+      equal(4, sourceIndex(0, [4, 5], [0, 5]))
+      equal(5, sourceIndex(1, [4, 5], [0, 5]))
+      equal(4, sourceIndex(2, [4, 5], [0, 5]))
+      equal(5, sourceIndex(3, [4, 5], [0, 5]))
+    })
+    it(`should cycle when filling backward`, () => {
+      equal(5, sourceIndex(1, [4, 5], [1, 5]))
+      equal(4, sourceIndex(2, [4, 5], [1, 5]))
+      equal(5, sourceIndex(3, [4, 5], [1, 5]))
+    })
+    it(`should work with fractional fill`, () => {
+      equal(11, sourceIndex(8, [10, 12], [8, 12]))
+      equal(12, sourceIndex(9, [10, 12], [8, 12]))
+    })
+  })
+
+  describe(`sourceCellForFill()`, () => {
     it(`should drag down`, () => {
       const startArea =  [4, 0, 5, 1]
       const entireArea = [4, 0, 9, 1]
-      equal(sourceCellForDrag(6, 0, startArea, entireArea), {row: 4, col: 0})
-      equal(sourceCellForDrag(7, 0, startArea, entireArea), {row: 5, col: 0})
-      equal(sourceCellForDrag(8, 1, startArea, entireArea), {row: 4, col: 1})
-      equal(sourceCellForDrag(9, 1, startArea, entireArea), {row: 5, col: 1})
+      equal(sourceCellForFill(6, 0, startArea, entireArea), {row: 4, col: 0})
+      equal(sourceCellForFill(7, 0, startArea, entireArea), {row: 5, col: 0})
+      equal(sourceCellForFill(8, 1, startArea, entireArea), {row: 4, col: 1})
+      equal(sourceCellForFill(9, 1, startArea, entireArea), {row: 5, col: 1})
     })
     it(`should drag right`, () => {
       const startArea =  [4, 0, 5, 0]
       const entireArea = [4, 0, 5, 1]
-      equal(sourceCellForDrag(5, 1, startArea, entireArea), {row: 5, col: 0})
+      equal(sourceCellForFill(5, 1, startArea, entireArea), {row: 5, col: 0})
     })
     it(`should drag up`, () => {
       const startArea =  [10, 0, 11, 1]
       const entireArea = [6, 0, 11, 1]
-      equal(sourceCellForDrag(8, 0, startArea, entireArea), {row: 10, col: 0})
-      equal(sourceCellForDrag(7, 1, startArea, entireArea), {row: 11, col: 1})
+      equal(sourceCellForFill(8, 0, startArea, entireArea), {row: 10, col: 0})
+      equal(sourceCellForFill(7, 1, startArea, entireArea), {row: 11, col: 1})
+    })
+    it(`should drag up (2)`, () => {
+      const startArea =  [10, 0, 10, 0]
+      const entireArea = [9, 0, 10, 0]
+      equal(sourceCellForFill(9, 0, startArea, entireArea), {row: 10, col: 0})
+    })
+    it(`should drag up (3)`, () => {
+      const startArea =  [10, 0, 11, 0]
+      const entireArea = [9, 0, 11, 0]
+      equal(sourceCellForFill(9, 0, startArea, entireArea), {row: 11, col: 0})
+    })
+    it(`should drag up (4)`, () => {
+      const startArea =  [10, 0, 12, 0]
+      const entireArea = [8, 0, 12, 0]
+      equal(sourceCellForFill( 8, 0, startArea, entireArea), {row: 11, col: 0})
+      equal(sourceCellForFill( 9, 0, startArea, entireArea), {row: 12, col: 0})
+    })
+    it(`should drag up with fractional increment`, () => {
+      const startArea =  [10, 0, 11, 1]
+      const entireArea = [9, 0, 11, 1]
+      equal(sourceCellForFill(9, 0, startArea, entireArea), {row: 11, col: 0})
     })
     it(`should drag left`, () => {
       const startArea =  [10, 1, 11, 1]
       const entireArea = [10, 0, 11, 1]
-      equal(sourceCellForDrag(10, 0, startArea, entireArea), {row: 10, col: 1})
+      equal(sourceCellForFill(10, 0, startArea, entireArea), {row: 10, col: 1})
     })
   })
 })

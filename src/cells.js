@@ -61,7 +61,16 @@ const translateReference = (source, destination, reference) => {
   return toReference(coordinates, absoluteRow, absoluteCol)
 }
 
-const sourceCellForDrag = (r, c, startArea, entireArea) => {
+const sourceIndex = (index, startRange, entireRange) => {
+  const startWidth = 1 + startRange[1] - startRange[0]
+  if (startRange[0] === entireRange[0]) {
+    return startRange[0] + (index - entireRange[0]) % startWidth
+  } else {
+    return startRange[1] - (entireRange[1] - index) % startWidth
+  }
+}
+
+const sourceCellForFill = (r, c, startArea, entireArea) => {
   const [T, L, B, R] = [0, 1, 2, 3]
   const startHeight = startArea[B] - startArea[T] + 1
   const entireHeight = entireArea[B] - entireArea[T] + 1
@@ -69,12 +78,11 @@ const sourceCellForDrag = (r, c, startArea, entireArea) => {
 
   if (direction === 'vertical') {
     const col = c
-    const row = startArea[T] + (r - entireArea[T]) % startHeight
+    const row = sourceIndex(r, [startArea[T], startArea[B]], [entireArea[T], entireArea[B]])
     return { row, col }
   } else {
     const row = r
-    const startWidth = startArea[R] - startArea[L] + 1
-    const col = startArea[L] + (c - entireArea[L]) % startWidth
+    const col = sourceIndex(c, [startArea[L], startArea[R]], [entireArea[L], entireArea[R]])
     return { row, col }
   }
 }
@@ -91,5 +99,6 @@ module.exports = {
   toColumn,
   toCoordinates,
   translateReference,
-  sourceCellForDrag
+  sourceCellForFill,
+  sourceIndex
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'handsontable/dist/handsontable.full.css';
-import { sourceCellForDrag, translateCell } from './cells'
+import { sourceCellForFill, translateCell } from './cells'
 import LocusTable from './LocusTable'
 import dnaType from './cellTypes/dnaType'
 import Handsontable from 'handsontable'
@@ -10,31 +10,16 @@ let fillDetails = {}
 Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType)
 Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator)
 Handsontable.hooks.add('modifyAutofillRange', (entireArea, startArea) => {
-  // console.log('modifyAutofillRange')
-  // console.log(`startArea:`, startArea)
-  // console.log(`entireArea:`, entireArea)
   fillDetails = {startArea, entireArea}
-})
-Handsontable.hooks.add('beforeAutofillInsidePopulate', (index, direction, input, deltas) => {
-  // console.log('beforeAutofillInsidePopulate')
-  // console.log(`index:`, index)
-  // console.log(`direction:`, direction)
-  // console.log(`input:`, input)
-  // console.log(`deltas:`, deltas)
-  // console.log('beforeAutofillInsidePopulate', start, end, data)
-  // data[0][0] = 'ggggggggggg' // does not work
-})
-Handsontable.hooks.add('beforeAutofill', (start, end, data) => {
 })
 
 Handsontable.hooks.add('beforeChange', (changes, source) => {
   if (source === 'Autofill.fill') {
     const { startArea, entireArea } = fillDetails
-
     changes.forEach(change => {
       // eslint-disable-next-line
       const [row, col, oldCell, cell] = change
-      const source = sourceCellForDrag(row, col, startArea, entireArea)
+      const source = sourceCellForFill(row, col, startArea, entireArea)
       const translated = translateCell(source, {row, col}, cell)
       change[3] = translated
     })
