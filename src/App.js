@@ -86,7 +86,7 @@ class App extends Component {
             <span className="App-title thymine">T&nbsp;</span>
             <span className="App-subtitle">a spreadsheet for sequences</span>
             <span className="App-subtitle" style={{float:"right"}}>
-              <a href="https://github.com/carlmanaster/locus-acgt" target="_blank">
+              <a href="https://github.com/carlmanaster/locus-acgt" target="_blank" rel="noopener noreferrer">
                 <img src="GitHub-Mark-Light-32px.png" alt="octocat"></img>
               </a>
             </span>
