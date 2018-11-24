@@ -87,6 +87,17 @@ const sourceCellForFill = (r, c, startArea, entireArea) => {
   }
 }
 
+const translateChanges = (startArea, entireArea, changes) => {
+  changes.forEach(change => {
+    const row = change[0]
+    const col = change[1]
+    const cell = change[3]
+    const source = sourceCellForFill(row, col, startArea, entireArea)
+    const translated = translateCell(source, {row, col}, cell)
+    change[3] = translated
+  })
+}
+
 module.exports = {
   isFormula,
   getFormula,
@@ -100,5 +111,6 @@ module.exports = {
   toCoordinates,
   translateReference,
   sourceCellForFill,
-  sourceIndex
+  sourceIndex,
+  translateChanges
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'handsontable/dist/handsontable.full.css';
-import { sourceCellForFill, translateCell } from './cells'
+import { translateChanges } from './cells'
 import LocusTable from './LocusTable'
 import dnaType from './cellTypes/dnaType'
 import Handsontable from 'handsontable'
@@ -23,13 +23,7 @@ Handsontable.hooks.add('afterCopy', (data, coords) => {
 Handsontable.hooks.add('beforeChange', (changes, source) => {
   if (source === 'Autofill.fill') {
     const { startArea, entireArea } = fillDetails
-    changes.forEach(change => {
-      // eslint-disable-next-line
-      const [row, col, oldCell, cell] = change
-      const source = sourceCellForFill(row, col, startArea, entireArea)
-      const translated = translateCell(source, {row, col}, cell)
-      change[3] = translated
-    })
+    translateChanges(startArea, entireArea, changes)
   }
   if (source === 'CopyPaste.paste') {
     if (!copyDetails.coords) return // if not copying from within this sheet
@@ -41,14 +35,7 @@ Handsontable.hooks.add('beforeChange', (changes, source) => {
     const B = changes[last][0]
     const R = changes[last][1]
     const entireArea = [ T, L, B, R ]
-
-    changes.forEach(change => {
-      // eslint-disable-next-line
-      const [row, col, oldCell, cell] = change
-      const source = sourceCellForFill(row, col, startArea, entireArea)
-      const translated = translateCell(source, {row, col}, cell)
-      change[3] = translated
-    })
+    translateChanges(startArea, entireArea, changes)
   }
 })
 
