@@ -1,15 +1,15 @@
 {
   "main.css": "/locus-acgt/static/css/main.c6e062f3.chunk.css",
-  "main.js": "/locus-acgt/static/js/main.8ef1eff7.chunk.js",
-  "main.js.map": "/locus-acgt/static/js/main.8ef1eff7.chunk.js.map",
+  "main.js": "/locus-acgt/static/js/main.272700bb.chunk.js",
+  "main.js.map": "/locus-acgt/static/js/main.272700bb.chunk.js.map",
   "static/css/1.dc1ed162.chunk.css": "/locus-acgt/static/css/1.dc1ed162.chunk.css",
-  "static/js/1.639fcd87.chunk.js": "/locus-acgt/static/js/1.639fcd87.chunk.js",
-  "static/js/1.639fcd87.chunk.js.map": "/locus-acgt/static/js/1.639fcd87.chunk.js.map",
+  "static/js/1.f5907bca.chunk.js": "/locus-acgt/static/js/1.f5907bca.chunk.js",
+  "static/js/1.f5907bca.chunk.js.map": "/locus-acgt/static/js/1.f5907bca.chunk.js.map",
   "runtime~main.js": "/locus-acgt/static/js/runtime~main.4d244231.js",
   "runtime~main.js.map": "/locus-acgt/static/js/runtime~main.4d244231.js.map",
   "static/css/1.dc1ed162.chunk.css.map": "/locus-acgt/static/css/1.dc1ed162.chunk.css.map",
   "static/css/main.c6e062f3.chunk.css.map": "/locus-acgt/static/css/main.c6e062f3.chunk.css.map",
   "index.html": "/locus-acgt/index.html",
-  "precache-manifest.07752e1dfec15b2fa8f83d9dbf06e76b.js": "/locus-acgt/precache-manifest.07752e1dfec15b2fa8f83d9dbf06e76b.js",
+  "precache-manifest.161d8faebb5f10353d617dd5fbb5a097.js": "/locus-acgt/precache-manifest.161d8faebb5f10353d617dd5fbb5a097.js",
   "service-worker.js": "/locus-acgt/service-worker.js"
 }
