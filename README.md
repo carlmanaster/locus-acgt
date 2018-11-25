@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Locus A-C-G-T is a spreadsheet with special accommodations for DNA, RNA, and amino acid sequences.  It offers sequence-specific display formats and functions.
+Locus A-C-G-T is a spreadsheet with special accommodations for DNA sequences.  It offers sequence-specific display formats and functions.
 
 ## Features
 
