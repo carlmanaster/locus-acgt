@@ -1,7 +1,5 @@
 # Locus A-C-G-T
 
-_NOTE: this is an aspirational document.  The state of the software is utterly nascent and pre-pre-release_
-
 ## Introduction
 
 Locus A-C-G-T is a spreadsheet with special accommodations for DNA, RNA, and amino acid sequences.  It offers sequence-specific display formats and functions.
@@ -10,13 +8,15 @@ Locus A-C-G-T is a spreadsheet with special accommodations for DNA, RNA, and ami
 
 ### Sequence-specific Formats
 
-Sequences can of course be viewed as character strings (because they are!).  When they are viewed in this way, they are color-coded using standard colors (the `A-C-G-T` in the header serves as a key).  But sequences may also be viewed as simple one-pixel wide vertical bars for a much denser display, using the same color coding.
+Sequences can be viewed as character strings.  When they are viewed in this way, they are color-coded using standard colors (the `A-C-G-T` in the header serves as a key).
 
-### Reference Sequence
+_(coming soon)_ Sequences may also be viewed as simple one-pixel wide vertical bars for a much denser display, using the same color coding.
+
+### Reference Sequence _(coming soon)_
 
 In either mode, you can assign another sequence as a reference.  For bases where the displayed sequence matches the reference, the character or vertical bar will be light and for bases where it does not match, it will be dark; in this way mutations stand out clearly.  The shading is ambiguity-code aware.
 
-### Sequence Tags
+### Sequence Tags _(coming soon)_
 
 You can create a list of color-coded sequence tags, to identify interesting subsequences.  Wherever these sequences are found within any sequence on the spreadsheet, the characters (as letters or vertical bars) are overlaid with the tag color.
 
