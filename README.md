@@ -102,7 +102,7 @@ Locus A-C-G-T is built with [handsontable](https://handsontable.com/) and [Creat
 
 ## Author
 
-<mailto:manaster@pobox.com>
+[Carl Manaster](<mailto:manaster@pobox.com>)
 
 [github](https://github.com/carlmanaster)
 
