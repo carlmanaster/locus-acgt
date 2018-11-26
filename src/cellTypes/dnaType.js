@@ -91,17 +91,24 @@ const renderer = function(hot, td, row, col, prop, unparsedValue, cellProperties
     return
   }
   if (!looksLikeDna(value)) {
-    Handsontable.renderers.TextRenderer(hot, td, row, col, prop, value, cellProperties)
+    Handsontable.renderers.TextRenderer.apply(this, arguments);
     return
   }
 
-  const div = toColorText(value)
-  td.style.fontFamily = 'monospace';
-  // const div = toStripes(value)
-  Handsontable.renderers.TextRenderer.apply(this, arguments);
-  td.removeChild(td.childNodes[0]);
+  const drawStripes = hot.getCellMeta(row, col).drawStripes
+
+  let div
+  if (drawStripes) {
+    div = toStripes(value)
+  } else {
+    div = toColorText(value)
+    td.style.fontFamily = 'monospace';
+    Handsontable.renderers.TextRenderer.apply(this, arguments);
+  }
+  if (td.childNodes[0] !== undefined)
+    td.removeChild(td.childNodes[0]);
   td.appendChild(div)
-};
+}
 
 const editor = Handsontable.editors.TextEditor
 

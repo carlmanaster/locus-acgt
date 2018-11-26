@@ -61,13 +61,16 @@ class App extends Component {
         ['=RANDOM_SEQUENCE(30)', 'RANDOM_SEQUENCE(30)', '', '', '', '', '', '', '', ''],
         ['=REVERSE_COMPLEMENT(A1)', 'REVERSE_COMPLEMENT(A1)', '', '', '', '', '', '', '', ''],
         ['=REVERSE(A1)', 'REVERSE(A1)', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', ''],
       ],
       // data: times( () => times (() => randomSequence(25), 4), 6),
       settings: {
         displayText: false,
         width: 1200,
         height: 220,
-      }
+      },
     }
   }
 

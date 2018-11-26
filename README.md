@@ -10,7 +10,7 @@ Locus A-C-G-T is a spreadsheet with special accommodations for DNA sequences.  I
 
 Sequences can be viewed as character strings.  When they are viewed in this way, they are color-coded using standard colors (the `A-C-G-T` in the header serves as a key).
 
-_(coming soon)_ Sequences may also be viewed as simple one-pixel wide vertical bars for a much denser display, using the same color coding.
+Sequences may also be viewed as simple one-pixel wide vertical bars for a much denser display, using the same color coding.  Just select the cells you want displayed as stripes and choose _Toggle Stripes_ from the context menu.
 
 ### Reference Sequence _(coming soon)_
 

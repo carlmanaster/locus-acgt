@@ -1,6 +1,6 @@
 import React from 'react';
 import { HotTable } from '@handsontable/react';
-const { forEach } = require('ramda')
+const { forEach, times } = require('ramda')
 
 const visit = (hot, ranges, fn) => {
   forEach( range => {
@@ -31,7 +31,18 @@ class LocusTable extends React.Component {
         "toggle_stripes": {
           name: 'Toggle Stripes',
           callback: function () {
-            this.setCellMeta(0, 0, 'drawStripes', true)
+            this.getSelected().forEach(range => {
+              const [c1, r1, c2, r2] = range
+              const L = Math.min(c1, c2)
+              const R = Math.max(c1, c2)
+              const T = Math.min(r1, r2)
+              const B = Math.max(r1, r2)
+              for (let col = L; col <= R; col++) {
+                for (let row = T; row <= B; row++) {
+                  this.setCellMeta(col, row, 'drawStripes', !this.getCellMeta(col, row).drawStripes)
+                }
+              }
+            })
             this.render()
           }
         },
