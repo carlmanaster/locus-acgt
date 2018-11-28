@@ -1,6 +1,7 @@
 import React from 'react';
 import { HotTable } from '@handsontable/react';
 const { forEach } = require('ramda')
+const { setReference } = require('./cellTypes/dnaType').default
 
 const visit = (hot, ranges, fn) => {
   forEach( range => {
@@ -40,10 +41,9 @@ class LocusTable extends React.Component {
         "set_reference": {
           name: 'Set Reference',
           callback: function () {
-            const ranges = arguments[1]
-            visit(this, ranges, console.log)
-            // console.log('setting cell reference')
-            // console.log(`arguments[1]:`, arguments[1])
+            const cell = this.getSelectedRangeLast().highlight
+            setReference(this.getValue(cell))
+            this.render()
           }
         },
         // "row_above": {

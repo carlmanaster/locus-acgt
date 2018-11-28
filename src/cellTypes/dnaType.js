@@ -37,7 +37,11 @@ const baseMapLight = {
 }
 
 // const REFERENCE = 'acactatacgtaggactgaggcatgacgcgatcgacgcgatacgagcatcgatcgactacgcggcatcacgaagc'
-const REFERENCE = ''
+let REFERENCE = ''
+
+const setReference = reference => {
+  REFERENCE = reference
+}
 
 const base = (c, match) => {
   const map = match ? baseMapLight : baseMap
@@ -115,5 +119,6 @@ const editor = Handsontable.editors.TextEditor
 export default {
   renderer, //: Handsontable.renderers.TextRenderer,
   validator: Handsontable.validators.TextValidator,
-  editor
+  editor,
+  setReference
 };
