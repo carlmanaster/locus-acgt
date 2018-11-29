@@ -79,7 +79,7 @@ const randomSequence = n => times(randomBase, n).join('')
 
 const consensusBase = (sequences, index) => {
   const set = new Set()
-  sequences.forEach(s => set.add(s.charAt(index)))
+  sequences.forEach(s => set.add(s.charAt(index).toLowerCase()))
   const v = Array.from(set)
   v.sort()
   return iupacAmbiguityLookup[v.join('')]
