@@ -4,15 +4,15 @@ self.__precacheManifest = [
     "url": "/locus-acgt/static/js/runtime~main.4d244231.js"
   },
   {
-    "revision": "0fb646e3b2a26612708f",
-    "url": "/locus-acgt/static/js/main.0fb646e3.chunk.js"
+    "revision": "61ddbc0abdf8127b6dcd",
+    "url": "/locus-acgt/static/js/main.61ddbc0a.chunk.js"
   },
   {
     "revision": "d3ee3b19d4f9b365d3c2",
     "url": "/locus-acgt/static/js/1.d3ee3b19.chunk.js"
   },
   {
-    "revision": "0fb646e3b2a26612708f",
+    "revision": "61ddbc0abdf8127b6dcd",
     "url": "/locus-acgt/static/css/main.c6e062f3.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/locus-acgt/static/css/1.dc1ed162.chunk.css"
   },
   {
-    "revision": "44d75c4b43f179354df9736abaf31a70",
+    "revision": "8b99e8d1857860bfb5d89c4cc5ff1d43",
     "url": "/locus-acgt/index.html"
   }
 ];
