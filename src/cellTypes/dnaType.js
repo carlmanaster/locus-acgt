@@ -36,11 +36,9 @@ const baseMapLight = {
   t: 'thymine-light'
 }
 
-// const REFERENCE = 'acactatacgtaggactgaggcatgacgcgatcgacgcgatacgagcatcgatcgactacgcggcatcacgaagc'
 let REFERENCE = ''
 
 const setReference = reference => {
-  console.log(`reference:`, reference)
   REFERENCE = reference
 }
 
