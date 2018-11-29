@@ -26,19 +26,19 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
    The bases from sequence, between start and end.
 
-   =AMPLICON("aacgtga", "ac", "tg") → "acgtg"
+   `=AMPLICON("aacgtga", "ac", "tg") → "acgtg"`
 
 * #### *BASE*(sequence, position) → base
 
    The base at that position.
 
-   =BASE("acgt", 3) → "g"
+   `=BASE("acgt", 3) → "g"`
 
 * #### *COMPLEMENT*(sequence) → sequence
 
    The complement of the sequence.
 
-   =COMPLEMENT("aacgtata") → "ttgcatat"
+   `=COMPLEMENT("aacgtata") → "ttgcatat"`
 
 * #### *CONSENSUS*(range) → sequence
 
@@ -48,15 +48,15 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
    Number of times ambiguity-coded subsequence occurs within sequence.
 
-   =COUNT("acgaacgtacgacg", "acg") → 4
+   `=COUNT("acgaacgtacgacg", "acg") → 4`
 
-   =COUNT("acgaacgtacgacg", "a") → 5
+   `=COUNT("acgaacgtacgacg", "a") → 5`
 
 * #### *FIND*(sequence, subsequence) → integer
 
    Zero-based first position of ambiguity-coded subsequence within sequence.
 
-   =FIND("acg", "acgaacgtacgacg") → 0
+   `=FIND("acg", "acgaacgtacgacg") → 0`
 
 * #### *FIRST_DIFFERENCE*(range) → integer
 
@@ -66,19 +66,19 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
    The percent of G & C bases in the sequence.
 
-   =GC_CONTENT("accga") → 60
+   `=GC_CONTENT("accga") → 60`
 
 * #### *LENGTH*(sequence) → integer
 
    The number of bases in the sequence.
 
-   =LENGTH("accga") → 5
+   `=LENGTH("accga") → 5`
 
 * #### *MELTING_TEMPERATURE*(sequence) → integer
 
    The melting temperature, in degrees Centigrade.
 
-   =MELTING_TEMPERATURE("aactatacgcagttc") → 36
+   `=MELTING_TEMPERATURE("aactatacgcagttc") → 36`
 
 * #### *RANDOM_SEQUENCE*(length) → sequence
 
@@ -88,13 +88,13 @@ You can create a list of color-coded sequence tags, to identify interesting subs
 
    The reverse of the sequence.
 
-   =REVERSE("aacgtata") → "atatgcaa"
+   `=REVERSE("aacgtata") → "atatgcaa"`
 
 * #### *REVERSE_COMPLEMENT*(sequence) → sequence
 
    The reverse complement of the sequence.
 
-   =REVERSE_COMPLEMENT("aacgtata") → "tatacgtt"
+   `=REVERSE_COMPLEMENT("aacgtata") → "tatacgtt"`
 
 ## Technology
 
