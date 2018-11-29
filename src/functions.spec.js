@@ -1,5 +1,5 @@
 const equal = require('assert').deepEqual
-const { find, count, meltingTemperature} = require('./functions')
+const { find, count, meltingTemperature, matchesAmbiguously } = require('./functions')
 
 const close = (actual, expected, tolerance) => {
   equal(true, Math.abs(expected - actual) < tolerance, `${actual} not close enough to ${expected}`)
@@ -27,7 +27,7 @@ describe(`functions.js`, () => {
     })
   })
 
-  describe(`count`, () => {
+  describe(`count()`, () => {
     it(`should count a`, () => {
       equal(count('cagt', 'a'), 1)
     })
@@ -42,7 +42,7 @@ describe(`functions.js`, () => {
     })
   })
 
-  describe(`meltingTemperature`, () => {
+  describe(`meltingTemperature()`, () => {
     it(`should get the right values for short sequences`, () => {
       close(meltingTemperature('gtcgctcaaatg'), 36.0, 0.1)
       close(meltingTemperature('ggaaggatcccc'), 40.0, 0.1)
@@ -59,5 +59,13 @@ describe(`functions.js`, () => {
       close(meltingTemperature('tccgtaaacctgtcgagcctgtctt'), 59.3, 0.1)
     })
 
+  })
+
+  describe(`matchesAmbiguously()`, () => {
+    it(`should work`, () => {
+      equal(matchesAmbiguously('a', 'a'), true)
+      equal(matchesAmbiguously('a', 'r'), true)
+      equal(matchesAmbiguously('a', 's'), false)
+    })
   })
 })

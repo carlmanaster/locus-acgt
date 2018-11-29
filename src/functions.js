@@ -44,6 +44,12 @@ const iupacAmbiguityLookup = {
   acgt: 'n',
 }
 
+const matchesAmbiguously = (base, code) => {
+  if (code === undefined) return false
+  const re = new RegExp(iupacAmbiguity[code], 'i')
+  return re.test(base)
+}
+
 const looksLikeDna = s => {
   if (typeof s === 'number') return false
   return s.replace(/[acgtryswkmbdhvn]/gi, '') === ''
@@ -131,5 +137,6 @@ module.exports = {
   firstDifference,
   looksLikeDna,
   meltingTemperature,
-  gcContent
+  gcContent,
+  matchesAmbiguously,
 }

@@ -12,9 +12,9 @@ Sequences can be viewed as character strings.  When they are viewed in this way,
 
 Sequences may also be viewed as simple one-pixel wide vertical bars for a much denser display, using the same color coding.  Just select the cells you want displayed as stripes and choose _Toggle Stripes_ from the context menu.
 
-### Reference Sequence _(coming soon)_
+### Reference Sequence
 
-In either mode, you can assign another sequence as a reference.  For bases where the displayed sequence matches the reference, the character or vertical bar will be light and for bases where it does not match, it will be dark; in this way mutations stand out clearly.  The shading is ambiguity-code aware.
+In either mode, you can assign one cell as a reference.  For bases where the displayed sequence matches the reference, the character or vertical bar will be light and for bases where it does not match, it will be dark; in this way mutations stand out clearly.  The shading is ambiguity-code aware.
 
 ### Sequence Tags _(coming soon)_
 

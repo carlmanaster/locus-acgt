@@ -2,7 +2,7 @@ import Handsontable from 'handsontable'
 
 const { checkType } = require('bionode-seq')
 const { parser } = require('../Parser')
-const { looksLikeDna } = require('../functions')
+const { looksLikeDna, matchesAmbiguously } = require('../functions')
 
 // eslint-disable-next-line
 const validator = function(value, callback) {
@@ -40,6 +40,7 @@ const baseMapLight = {
 let REFERENCE = ''
 
 const setReference = reference => {
+  console.log(`reference:`, reference)
   REFERENCE = reference
 }
 
@@ -56,7 +57,7 @@ const toStripes = sequence => {
   const chars = sequence.toString().split('')
   let stripes = ''
   for (var i = 0; i < chars.length; i++) {
-    const match = chars[i] === REFERENCE[i]
+    const match = matchesAmbiguously(chars[i], REFERENCE[i])
     stripes += toStripe(chars[i], i, match)
   }
   const div = document.createElement('div');
@@ -68,7 +69,7 @@ const toColorText = function(sequence) {
   const chars = sequence.toString().split('')
   let spans = ''
   for (var i = 0; i < chars.length; i++) {
-    const match = chars[i] === REFERENCE[i]
+    const match = matchesAmbiguously(chars[i], REFERENCE[i])
     spans += toSpan(chars[i], match)
   }
   const div = document.createElement('div');
@@ -120,5 +121,6 @@ export default {
   renderer, //: Handsontable.renderers.TextRenderer,
   validator: Handsontable.validators.TextValidator,
   editor,
-  setReference
+  setReference,
+  getValue
 };
