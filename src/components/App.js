@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'handsontable/dist/handsontable.full.css';
-import { translateChanges } from './cells'
+import { translateChanges } from '../cells'
 import LocusTable from './LocusTable'
-import dnaType from './cellTypes/dnaType'
+import dnaType from '../cellTypes/dnaType'
 import Handsontable from 'handsontable'
 
 let fillDetails = {}

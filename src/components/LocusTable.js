@@ -1,7 +1,7 @@
 import React from 'react';
 import { HotTable } from '@handsontable/react';
 const { forEach } = require('ramda')
-const { setReference, getValue } = require('./cellTypes/dnaType').default
+const { setReference, getValue } = require('../cellTypes/dnaType').default
 
 const visit = (hot, ranges, fn) => {
   forEach( range => {
