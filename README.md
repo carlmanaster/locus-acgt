@@ -8,11 +8,17 @@ Locus A-C-G-T is a spreadsheet with special accommodations for DNA sequences.  I
 
 ### Sequence-specific Formats
 
+<img src=".README_images/two_sequences_as_text.png" width="320" height="81">
+
 Sequences can be viewed as character strings.  When they are viewed in this way, they are color-coded using standard colors (the `A-C-G-T` in the header serves as a key).
+
+<img src=".README_images/two_sequences_as_stripes.png" width="115" height="81">
 
 Sequences may also be viewed as simple one-pixel wide vertical bars for a much denser display, using the same color coding.  Just select the cells you want displayed as stripes and choose _Toggle Stripes_ from the context menu.
 
 ### Reference Sequence
+
+<img src=".README_images/reference_sequence.png" width="350" height="244">
 
 In either mode, you can assign one cell as a reference.  For bases where the displayed sequence matches the reference, the character or vertical bar will be light and for bases where it does not match, it will be dark; in this way mutations stand out clearly.  The shading is ambiguity-code aware.
 
