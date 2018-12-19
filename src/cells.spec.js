@@ -12,7 +12,9 @@ const {
   toReference,
   toCoordinates,
   sourceCellForFill,
-  sourceIndex
+  sourceIndex,
+  toCellMap,
+  toCellMatrix,
 } = require('./cells')
 
 describe(`cells.js`, () => {
@@ -199,5 +201,37 @@ describe(`cells.js`, () => {
       const entireArea = [10, 0, 11, 1]
       equal(sourceCellForFill(10, 0, startArea, entireArea), {row: 10, col: 1})
     })
+  })
+
+  describe(`toCellMap()`, () => {
+    const matrix = [
+      ['', 'y', '', ''],
+      ['', '', 'x', ''],
+      ['', '', '', ''],
+    ]
+    const expectedMap = {
+      width: 4,
+      height: 3,
+      b1: 'y',
+      c2: 'x',
+    }
+    const map = toCellMap(matrix)
+    equal(map, expectedMap)
+  })
+
+  describe(`toCellMatrix()`, () => {
+    const map = {
+      width: 4,
+      height: 3,
+      b1: 'y',
+      c2: 'x',
+    }
+    const expectedMatrix = [
+      ['', 'y', '', ''],
+      ['', '', 'x', ''],
+      ['', '', '', ''],
+    ]
+    const matrix = toCellMatrix(map)
+    equal(matrix, expectedMatrix)
   })
 })

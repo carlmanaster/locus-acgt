@@ -1,3 +1,5 @@
+const { repeat, times, without, keys } = require('ramda')
+
 const charA = 'a'.charCodeAt()
 
 const isFormula = cell => cell.startsWith('=')
@@ -98,6 +100,33 @@ const translateChanges = (startArea, entireArea, changes) => {
   })
 }
 
+const toCellMap = matrix => {
+  const height = matrix.length
+  const width = matrix[0].length
+  const result = { width, height }
+  for (let row = 0; row < height; row++) {
+    for (let col = 0; col < width; col++) {
+      const formula = matrix[row][col]
+      if (formula !== '') {
+        const reference = toReference({row, col})
+        result[reference] = formula
+      }
+    }
+  }
+  return result
+}
+
+const toCellMatrix = map => {
+  const { width, height } = map
+  const cells = without(['width', 'height'], keys(map))
+  const matrix = times(() => repeat('', width), height)
+  cells.forEach(cell => {
+    const {row, col} = toCoordinates(cell)
+    matrix[row][col] = map[cell]
+  })
+  return matrix
+}
+
 module.exports = {
   isFormula,
   getFormula,
@@ -112,5 +141,7 @@ module.exports = {
   translateReference,
   sourceCellForFill,
   sourceIndex,
-  translateChanges
+  translateChanges,
+  toCellMap,
+  toCellMatrix,
 }
