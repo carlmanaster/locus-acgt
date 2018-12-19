@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'handsontable/dist/handsontable.full.css';
-import { translateChanges } from '../cells'
+import { translateChanges, toCellMatrix } from '../cells'
 import LocusTable from './LocusTable'
 import dnaType from '../cellTypes/dnaType'
 import Handsontable from 'handsontable'
@@ -39,33 +39,36 @@ Handsontable.hooks.add('beforeChange', (changes, source) => {
   }
 })
 
+const cellMap = {
+  width: 10,
+  height: 20,
+  a1: 'tccagggacattcatgcatcgcctt',
+  a2: 'tccaggtacattcatgcattgcctt',
+  a3: 'cat',
+  a4: 'gcc',
+  a5: '=AMPLICON(A1, A3, A4)',
+  a6: '=BASE(A1, 1)',
+  a7: '=COMPLEMENT(A1)',
+  a8: '=CONSENSUS(A1:A2)',
+  a9: '=COUNT(A1, A3)',
+  a10: '=FIND(A1, A3)',
+  a11: '=FIRST_DIFFERENCE(A1:A2)',
+  a12: '=GC_CONTENT(A1)',
+  a13: '=LENGTH(A1)',
+  a14: '=MELTING_TEMPERATURE(A1)',
+  a15: '=RANDOM_SEQUENCE(30)',
+  a16: '=REVERSE_COMPLEMENT(A1)',
+  a17: '=REVERSE(A1)',
+}
+for (let i = 5; i < 18; i++) {
+  cellMap[`b${i}`] = cellMap[`a${i}`].slice(1)
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        ['tccagggacattcatgcatcgcctt', '', '', '', '', '', '', '', '', ''],
-        ['tccaggtacattcatgcattgcctt', '', '', '', '', '', '', '', '', ''],
-        ['cat', '', '', '', '', '', '', '', '', ''],
-        ['gcc', '', '', '', '', '', '', '', '', ''],
-        ['=AMPLICON(A1, A3, A4)', 'AMPLICON(A1, A3, A4)', '', '', '', '', '', '', '', ''],
-        ['=BASE(A1, 1)', 'BASE(A1, 1)', '', '', '', '', '', '', '', ''],
-        ['=COMPLEMENT(A1)', 'COMPLEMENT(A1)', '', '', '', '', '', '', '', ''],
-        ['=CONSENSUS(A1:A2)', 'CONSENSUS(A1:A2)', '', '', '', '', '', '', '', ''],
-        ['=COUNT(A1, A3)', 'COUNT(A1, A3)', '', '', '', '', '', '', '', ''],
-        ['=FIND(A1, A3)', 'FIND(A1, A3)', '', '', '', '', '', '', '', ''],
-        ['=FIRST_DIFFERENCE(A1:A2)', 'FIRST_DIFFERENCE(A1:A2)', '', '', '', '', '', '', '', ''],
-        ['=GC_CONTENT(A1)', 'GC_CONTENT(A1)', '', '', '', '', '', '', '', ''],
-        ['=LENGTH(A1)', 'LENGTH(A1)', '', '', '', '', '', '', '', ''],
-        ['=MELTING_TEMPERATURE(A1)', 'MELTING_TEMPERATURE(A1)', '', '', '', '', '', '', '', ''],
-        ['=RANDOM_SEQUENCE(30)', 'RANDOM_SEQUENCE(30)', '', '', '', '', '', '', '', ''],
-        ['=REVERSE_COMPLEMENT(A1)', 'REVERSE_COMPLEMENT(A1)', '', '', '', '', '', '', '', ''],
-        ['=REVERSE(A1)', 'REVERSE(A1)', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-      ],
-      // data: times( () => times (() => randomSequence(25), 4), 6),
+      data: toCellMatrix(cellMap),
       settings: {
         displayText: false,
         width: 1200,
