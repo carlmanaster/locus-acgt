@@ -1,0 +1,70 @@
+could extract header component.
+could do all the handsontable stuff in App.js specific to the specific handsontable component, instead of global handsontable.
+could write something to translate between sparse and array-of-arrays representations (but handsontable needs array-of-arrays)
+could put empty <Provider> around app, then add shit to it.
+Also, handsontable seems to own its cell meta - how do we incorporate that into the redux store?
+
+Why are we looking into redux?
+ - should be cleaner
+ - facilitates save & open
+ - facilitates undo (although handsontable handles that pretty well already)
+ - formula bar needs to share some state with handsontable
+
+const state = {
+                data: [[]], // maybe "formulas"?
+                cellStyles: [[]], // or, whichOnesAreStripes, or...?
+                referenceCell: undefined,
+                referenceSequence: undefined, // (changes when that cell is edited?)
+                tags: [],
+              }
+
+/*
+    ACTIONS
+    SET_DATA (big & ugly? - paste and fill) or SET_FORMULA?
+    or maybe SET_CELLS [{cell, formula}, ...]
+    SET_CELL_FORMULA
+    SET_CELLS_FORMULA
+    SET_CELL_META
+    SET_CELLS_META
+    SET_REFERENCE ({cell})
+    TOGGLE_STRIPES ({ranges})
+*/
+
+/*
+Nice - if it's state, then Parser won't need to hit the hot.  just read what
+it needs from the state.  dnaType.formatter, too.  Resolves all of the uncomfortable
+bits which have been nagging at me.
+*/
+
+/*
+    actions
+    action creators
+    reducers
+    store
+    state
+    props
+*/
+
+const setTechnology = tech => ({
+  type:    SET_TECHNOLOGY,
+  payload: { tech },
+})
+
+
+/*
+ * formula bar ramblings, re: special keypresses
+ *
+ * enter:       sets active cell value
+ *              if multiple cells are selected, advances down-left-wrap
+ *
+ * shift-enter: sets active cell value
+ *              if multiple cells are selected, advances up-right-wrap
+ *
+ * tab:         sets active cell value
+ *              if multiple cells are selected, advances left-down-wrap
+ *
+ * shift-tab:   sets active cell value
+ *              if multiple cells are selected, advances right-up-wrap
+ *
+ * when active cell changes (what's the hook?) populate formula bar
+ */
