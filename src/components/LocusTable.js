@@ -11,16 +11,16 @@ let copyDetails = {}
 Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType)
 Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator)
 
-Handsontable.hooks.add('modifyAutofillRange', (entireArea, startArea) => {
+const modifyAutofillRange = (entireArea, startArea) => {
   fillDetails = { startArea, entireArea }
-}, this)
+}
 
-Handsontable.hooks.add('afterCopy', (data, coords) => {
+const afterCopy = (data, coords) => {
   // TODO: handle multiple area selection; that's why coords is an array
   copyDetails = { coords: coords[0] }
-}, this)
+}
 
-Handsontable.hooks.add('beforeChange', (changes, source) => {
+const beforeChange = (changes, source) => {
   if (source === 'Autofill.fill') {
     const { startArea, entireArea } = fillDetails
     translateChanges(startArea, entireArea, changes)
@@ -37,7 +37,7 @@ Handsontable.hooks.add('beforeChange', (changes, source) => {
     const entireArea = [ T, L, B, R ]
     translateChanges(startArea, entireArea, changes)
   }
-}, this)
+}
 
 const visit = (hot, ranges, fn) => {
   forEach( range => {
@@ -112,6 +112,9 @@ class LocusTable extends React.Component {
       stretchH: "all",
       formulas: true,
       manualColumnResize: true,
+      modifyAutofillRange,
+      beforeChange,
+      afterCopy,
       contextMenu
     }
 
