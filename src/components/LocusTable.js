@@ -1,7 +1,43 @@
 import React from 'react';
 import { HotTable } from '@handsontable/react';
+import Handsontable from 'handsontable'
+import dnaType from '../cellTypes/dnaType'
+import { translateChanges } from '../cells'
 const { forEach } = require('ramda')
 const { setReference, getValue } = require('../cellTypes/dnaType').default
+
+let fillDetails = {}
+let copyDetails = {}
+Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType)
+Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator)
+
+Handsontable.hooks.add('modifyAutofillRange', (entireArea, startArea) => {
+  fillDetails = { startArea, entireArea }
+}, this)
+
+Handsontable.hooks.add('afterCopy', (data, coords) => {
+  // TODO: handle multiple area selection; that's why coords is an array
+  copyDetails = { coords: coords[0] }
+}, this)
+
+Handsontable.hooks.add('beforeChange', (changes, source) => {
+  if (source === 'Autofill.fill') {
+    const { startArea, entireArea } = fillDetails
+    translateChanges(startArea, entireArea, changes)
+  }
+  if (source === 'CopyPaste.paste') {
+    if (!copyDetails.coords) return // if not copying from within this sheet
+    const { startRow, startCol, endRow, endCol } = copyDetails.coords
+    const startArea = [ startRow, startCol, endRow, endCol ]
+    const last = changes.length - 1
+    const T = changes[0][0]
+    const L = changes[0][1]
+    const B = changes[last][0]
+    const R = changes[last][1]
+    const entireArea = [ T, L, B, R ]
+    translateChanges(startArea, entireArea, changes)
+  }
+}, this)
 
 const visit = (hot, ranges, fn) => {
   forEach( range => {

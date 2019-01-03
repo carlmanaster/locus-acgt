@@ -1,5 +1,4 @@
 could extract header component.
-could do all the handsontable stuff in App.js specific to the specific handsontable component, instead of global handsontable.
 could write something to translate between sparse and array-of-arrays representations (but handsontable needs array-of-arrays)
 could put empty <Provider> around app, then add shit to it.
 Also, handsontable seems to own its cell meta - how do we incorporate that into the redux store?

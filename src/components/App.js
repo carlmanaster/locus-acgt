@@ -1,43 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'handsontable/dist/handsontable.full.css';
-import { translateChanges, toCellMatrix } from '../cells'
+import { toCellMatrix } from '../cells'
 import LocusTable from './LocusTable'
-import dnaType from '../cellTypes/dnaType'
-import Handsontable from 'handsontable'
-
-let fillDetails = {}
-let copyDetails = {}
-Handsontable.cellTypes.registerCellType('locus-acgt-dna-sequence', dnaType)
-Handsontable.validators.registerValidator('locus-acgt-dna-sequence', dnaType.validator)
-
-Handsontable.hooks.add('modifyAutofillRange', (entireArea, startArea) => {
-  fillDetails = { startArea, entireArea }
-})
-
-Handsontable.hooks.add('afterCopy', (data, coords) => {
-  // TODO: handle multiple area selection; that's why coords is an array
-  copyDetails = { coords: coords[0] }
-})
-
-Handsontable.hooks.add('beforeChange', (changes, source) => {
-  if (source === 'Autofill.fill') {
-    const { startArea, entireArea } = fillDetails
-    translateChanges(startArea, entireArea, changes)
-  }
-  if (source === 'CopyPaste.paste') {
-    if (!copyDetails.coords) return // if not copying from within this sheet
-    const { startRow, startCol, endRow, endCol } = copyDetails.coords
-    const startArea = [ startRow, startCol, endRow, endCol ]
-    const last = changes.length - 1
-    const T = changes[0][0]
-    const L = changes[0][1]
-    const B = changes[last][0]
-    const R = changes[last][1]
-    const entireArea = [ T, L, B, R ]
-    translateChanges(startArea, entireArea, changes)
-  }
-})
 
 const cellMap = {
   width: 10,
