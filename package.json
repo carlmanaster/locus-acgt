@@ -9,8 +9,8 @@
     "handsontable": "^6.0.1",
     "hot-formula-parser": "^3.0.0",
     "ramda": "^0.26.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-scripts": "^2.1.3"
   },
   "scripts": {
