@@ -4,9 +4,10 @@
   "private": true,
   "homepage": "http://carlmanaster.github.io/locus-acgt",
   "dependencies": {
-    "@handsontable/react": "^1.1.0",
+    "@babel/polyfill": "^7.2.5",
+    "@handsontable/react": "^2.1.0",
     "bionode-seq": "^0.1.1",
-    "handsontable": "^6.0.1",
+    "handsontable": "^6.2.2",
     "hot-formula-parser": "^3.0.0",
     "ramda": "^0.26.1",
     "react": "^16.7.0",
