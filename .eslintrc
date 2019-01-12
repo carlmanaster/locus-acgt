@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": 0,
+    "quotes": ["warn", "single"],
+    "comma-dangle": ["error", "always"],
+    "arrow-parens": ["error", "as-needed"],
+    "no-mixed-operators": 0,
+    "semi": ["error", "never"]
+  }
+}
