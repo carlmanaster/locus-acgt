@@ -10,6 +10,8 @@ import todoApp from './reducers'
 
 const store = createStore(todoApp)
 
+// TODO: example https://codepen.io/handsoncode/pen/LWmvPX?editors=0010
+
 render(
   <Provider store={store}>
     <App />
