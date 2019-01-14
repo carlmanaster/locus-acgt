@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import './App.css';
-import 'handsontable/dist/handsontable.full.css';
-import { toCellMatrix } from '../cells'
+import React, { Component, } from 'react'
+import './App.css'
+import 'handsontable/dist/handsontable.full.css'
+import { toCellMatrix, } from '../cells'
 import LocusTable from './LocusTable'
 
 const cellMap = {
@@ -31,7 +31,7 @@ for (let i = 5; i < 18; i++) {
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: toCellMatrix(cellMap),
       settings: {
@@ -47,8 +47,8 @@ class App extends Component {
       this.setState({
         settings: {
           [setting]: states[event.target.checked ? 1 : 0],
-        }
-      });
+        },
+      })
     }
   }
 
@@ -56,30 +56,34 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-            <span className="App-title">Locus&nbsp;</span>
-            <span className="App-title adenine">A</span>
-            <span className="App-title">&ndash;</span>
-            <span className="App-title cytosine">C</span>
-            <span className="App-title">&ndash;</span>
-            <span className="App-title guanine">G</span>
-            <span className="App-title">&ndash;</span>
-            <span className="App-title thymine">T&nbsp;</span>
-            <span className="App-subtitle">a spreadsheet for sequences</span>
-            <span className="App-subtitle" style={{float:"right"}}>
-              <a href="https://github.com/carlmanaster/locus-acgt" target="_blank" rel="noopener noreferrer">
-                <img src="GitHub-Mark-Light-32px.png" alt="octocat"></img>
-              </a>
-            </span>
+          <span className="App-title">Locus&nbsp;</span>
+          <span className="App-title adenine">A</span>
+          <span className="App-title">&ndash;</span>
+          <span className="App-title cytosine">C</span>
+          <span className="App-title">&ndash;</span>
+          <span className="App-title guanine">G</span>
+          <span className="App-title">&ndash;</span>
+          <span className="App-title thymine">T&nbsp;</span>
+          <span className="App-subtitle">a spreadsheet for sequences</span>
+          <span className="App-subtitle" style={{ float: 'right', }}>
+            <a
+              href="https://github.com/carlmanaster/locus-acgt"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="GitHub-Mark-Light-32px.png" alt="octocat" />
+            </a>
+          </span>
         </header>
         <LocusTable
-          data = {this.state.data}
-          name = "hot"
-          id = "hot-id"
-          ref = "hot-ref"
-          />
+          data={this.state.data}
+          name="hot"
+          id="hot-id"
+          ref="hot-ref"
+        />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
